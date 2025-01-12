@@ -4,17 +4,17 @@ Agruparem en aquest apartat les consultes que tracten conjunts de files per a
 fer operacions d'algebra de conjunts: **unió** , **intersecció** i
 **diferència** de conjunts
 
-Toters aquestes consultes ajunten els resultats de dues o més consultes.
+Totes aquestes consultes ajunten els resultats de dues o més consultes.
 
 ## 4.1 Unió
 
 **<u>Sintaxi</u>**
 
-```
-[TABLE] consulta1  
-UNION [ALL]  
-[TABLE] consulta2 ...
-```
+
+    [TABLE] consulta1  
+    UNION [ALL]  
+    [TABLE] consulta2 ...
+
 Cadascuna de les consultes pot ser una taula (posant la paraula **TABLE**
 davant) o el nom d'una consulta ja guardada, encara que el més habitual serà
 posar directament la **sentència SQL**.
@@ -37,14 +37,14 @@ podem evitar posant el número d'ordre en el ORDER BY)
 **Exemple**
 
   1) Volem veure en un únic resultat tant el nom de les comarques com el nom de les poblacions, sempre amb el nom de la província al costat
-```
-  SELECT nom_c, provincia  
-    FROM COMARQUES  
-  UNION  
-  SELECT nom, provincia  
-    FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
-  ORDER BY nom_c;
-```
+
+    SELECT nom_c, provincia  
+      FROM COMARQUES  
+    UNION  
+    SELECT nom, provincia  
+      FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
+    ORDER BY nom_c;
+
 Com a curiositat, eixiran 575 files, però si posàrem UNION ALL ens eixirien
 576. Això és perquè la comarca de la ciutat de València es diu València i està
 a la província de València. Per tant és una fila que apareixerà tant en la
@@ -59,11 +59,11 @@ traure únicament les files que estan en les dues consultes.
 
 
 **<u>Sintaxi</u>**
-```
-[TABLE] consulta1  
-INTERSECT [ALL]  
-[TABLE] consulta2 ...
-```
+
+    [TABLE] consulta1  
+    INTERSECT [ALL]  
+    [TABLE] consulta2 ...
+
 Igual que abans, cadascuna de les consultes pot ser una taula (posant la
 paraula **TABLE** davant), i tenim el requisit que les dues (o més) consultes
 tornen el mateix nombre de camps, i de tipus compatibles.
@@ -73,14 +73,14 @@ En principi no eixiran files repetides, a no ser que posem **ALL**
 **Exemple**
 
   1) Com que en l'exemple de la unió havíem vist que la fila València València eixia en les 2 consultes, anem a comprovar que apareix en la intersecció:
-```
-  SELECT nom_c, provincia  
-    FROM COMARQUES  
-  INTERSECT  
-  SELECT nom, provincia  
-    FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
-  ORDER BY nom_c;
-```
+
+    SELECT nom_c, provincia  
+      FROM COMARQUES  
+    INTERSECT  
+    SELECT nom, provincia  
+      FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
+    ORDER BY nom_c;
+
 ## 4.3 Diferència
 
 És identica a les anteriors, però posant la paraula **EXCEPT** , i servirà per
@@ -88,11 +88,11 @@ a traure les files que estan en la primera consulta però que no estan en la
 segona.
 
 **<u>Sintaxi</u>**
-```
-[TABLE] consulta1  
-EXCEPT [ALL]  
-[TABLE] consulta2 ...
-```
+
+    [TABLE] consulta1  
+    EXCEPT [ALL]  
+    [TABLE] consulta2 ...
+
 Igual que abans, cadascuna de les consultes pot ser una taula (posant la
 paraula **TABLE** davant), i tenim el requisit que les dues (o més) consultes
 tornen el mateix nombre de camps, i de tipus compatibles.
@@ -102,14 +102,14 @@ En principi no eixiran files repetides, a no ser que posem **ALL**
 **<u>Exemple</u>**
 
   1) Aprofitem el mateix exemple d'abans per a comprovar que amb EXCEPT no eixirà la comarca València, ja que hi ha una fila idèntica en la segona consulta:
-```
-  SELECT nom_c, provincia  
-    FROM COMARQUES  
-  EXCEPT  
-  SELECT nom, provincia  
-    FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
-  ORDER BY nom_c;
-```
+
+    SELECT nom_c, provincia  
+      FROM COMARQUES  
+    EXCEPT  
+    SELECT nom, provincia  
+      FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
+    ORDER BY nom_c;
+
 ## :pencil2: Exercicis
 
 **Ex_75** Traure el nom de tots els clients i venedors implicats en alguna
