@@ -22,10 +22,10 @@ segurament el resultat no és el que esperàvem.
 
 Per exemple podem fer la següent sentència:
 
-```
-  SELECT COMARQUES.nom_c, nom  
-    FROM COMARQUES,POBLACIONS;
-```
+
+    SELECT COMARQUES.nom_c, nom  
+      FROM COMARQUES,POBLACIONS;
+
 
 
 !!! note "Nota"
@@ -71,10 +71,10 @@ clau principal de **COMARQUES**.
 Aquesta operació l'anomenarem **COMBINACIÓ INTERNA** o senzillament
 **COMBINACIÓ** , i de vegades també es diu **REUNIÓ**. La seua sintaxi és la
 següent:
-```
-  SELECT ...  
-    FROM taula1 INNER JOIN taula2 ON _condició_
-```
+
+    SELECT ...  
+      FROM taula1 INNER JOIN taula2 ON _condició_
+
 La condició de la reunió consistirà en comparar un camp de cada taula.
 Els dos camps hauran de ser del mateix tipus, però no caldrà que tinguen el
 mateix nom. Les files que eixiran al resultat seran les que acompliran la
@@ -83,15 +83,15 @@ condició.
 Encara que els operadors que es poden utilitzar són tots els de comparació, en
 la pràctica SEMPRE utilitzarem el d'igualar. Per tant podem refinar millor la
 combinació de 2 taules
-```
-  SELECT ...  
-    FROM taula1 INNER JOIN taula2 ON taula1.camp1 = taula2.camp2
-```
+
+    SELECT ...  
+      FROM taula1 INNER JOIN taula2 ON taula1.camp1 = taula2.camp2
+
 L'exemple de les comarques i les seues poblacions quedarà així
-```
-  SELECT COMARQUES.nom_c, POBLACIONS.nom  
-    FROM COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c = POBLACIONS.nom_c
-```
+
+    SELECT COMARQUES.nom_c, POBLACIONS.nom  
+      FROM COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c = POBLACIONS.nom_c
+
 I aquest seria el resultat
 
 ![](T6_II_2_2_1.png)
@@ -99,11 +99,11 @@ I aquest seria el resultat
 que com veiem torna 542 files (tantes com pobles)
 
 Alternativament, podríem posar la mateixa reunió d'una altra forma:
-```
-  SELECT COMARQUES.nom_c, POBLACIONS.nom  
-    FROM COMARQUES,POBLACIONS  
-    WHERE COMARQUES.nom_c = POBLACIONS.nom_c
-```
+
+    SELECT COMARQUES.nom_c, POBLACIONS.nom  
+      FROM COMARQUES,POBLACIONS  
+      WHERE COMARQUES.nom_c = POBLACIONS.nom_c
+
 on estrictament el que estem fent és, del producte cartesià de les 2 taules,
 seleccionar únicament quan coincideix el **nom_c** (és a dir la comarca amb
 les seues poblacions), i per tant el resultat seria el mateix. Potser fóra més
@@ -118,15 +118,15 @@ una combinació. No les veurem tan a fons perquè les anteriors ens basten i
 sobren:
 
   * **INNER JOIN amb USING** : En el cas que els camps a reunir de les dues taules es diguen exactament igual, podem substituir la condició posada en **ON** per l'expressió **USING** , amb el camp de la reunió entre parèntesis
-```
-  SELECT COMARQUES.nom_c, POBLACIONS.nom  
-    FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)
-```
+
+    SELECT COMARQUES.nom_c, POBLACIONS.nom  
+      FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)
+
   * **NATURAL JOIN** : També per al cas anterior, en què el camp en les dues taules es diu igual, podem fer-lo de forma encara més abreviada. Farà una reunió, igualant tots els camps que es diguen igual de les dues taules. Hem d'anar en compte, per si de cas hi ha algun altre camp en les dues taules que es diga igual.
-```
-  SELECT COMARQUES.nom_c, POBLACIONS.nom  
-    FROM COMARQUES NATURAL JOIN POBLACIONS
-```
+
+    SELECT COMARQUES.nom_c, POBLACIONS.nom  
+      FROM COMARQUES NATURAL JOIN POBLACIONS
+
 **<u>Exemples</u>**
 
   1) **Traure el noms de les Poblacions i els noms dels Instituts que hi ha en elles.**
@@ -134,32 +134,32 @@ sobren:
 Haurem de combinar les taules per la clau externa d'INSTITUTS a POBLACIONS (és
 a dir la que apunta de cod_m en INSTITUTS fins a la clau principal de
 COMARQUES, que és justament cod_m).
-```
-  SELECT POBLACIONS.nom,INSTITUTS.nom  
-    FROM POBLACIONS INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m;
-```
+
+    SELECT POBLACIONS.nom,INSTITUTS.nom  
+      FROM POBLACIONS INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m;
+
 Utilitzant l'altra sintaxi, que posem la condició en el **WHERE** , ens
 quedaria:
-```
-  SELECT POBLACIONS.nom,INSTITUTS.nom  
-    FROM POBLACIONS , INSTITUTS  
-    WHERE POBLACIONS.cod_m=INSTITUTS.cod_m;
-```
+
+    SELECT POBLACIONS.nom,INSTITUTS.nom  
+      FROM POBLACIONS , INSTITUTS  
+      WHERE POBLACIONS.cod_m=INSTITUTS.cod_m;
+
 Com en aquest cas el camp que hem d'igualar té el mateix nom en les dues
 taules, utilitzant la sintaxi del **USING** ens quedari més fàcil:
-```
-  SELECT POBLACIONS.nom,INSTITUTS.nom  
-    FROM POBLACIONS INNER JOIN INSTITUTS USING(cod_m);
-```
+
+    SELECT POBLACIONS.nom,INSTITUTS.nom  
+      FROM POBLACIONS INNER JOIN INSTITUTS USING(cod_m);
+
 En canvi, hem d'anar amb molt de compte amb la sintaxi del **NATURAL JOIN** ,
 perquè itentarà igualar tots els camps que es diuen igual, i en aquest cas
 tenim dos camps coincidents: cod_m i nom. cod_m és el que volem, però nom ens
 fastidiarà, i evidentment no coincideix mai el nom de l'Institut i el de la
 població, i per tant no tornarà cap fila.
-```
-  SELECT POBLACIONS.nom,INSTITUTS.nom  
-    FROM POBLACIONS NATURAL JOIN INSTITUTS;
-```
+
+      SELECT POBLACIONS.nom,INSTITUTS.nom  
+        FROM POBLACIONS NATURAL JOIN INSTITUTS;
+
   2) **Traure els noms de les comarques i la província, amb el nombre de poblacions que té cada comarca.**
 
 Ens fan falta dues taules, COMARQUES per a poder traure el nom de la comarca i
@@ -171,9 +171,9 @@ la taula POBLACIONS, per exemple cod_m, que és la clau principal (recordem que
 els valors nuls no es comptaran, i cod_m per ser clau principal no pot ser
 nul).
 
-  SELECT COMARQUES.nom_c, provincia, COUNT(cod_m) AS Quants  
-    FROM COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c  
-    GROUP BY COMARQUES.nom_c, provincia;
+    SELECT COMARQUES.nom_c, provincia, COUNT(cod_m) AS Quants  
+      FROM COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c  
+      GROUP BY COMARQUES.nom_c, provincia;
 
 
 **Tres o més taules**{.azul}
@@ -191,21 +191,21 @@ el nom dels instituts d'aquestos pobles. Ens fan falta les taules COMARQUES
 el nom de la població) i INSTITUTS (per al nom d'aquestos). Ordenarem per nom
 de comarca, i dins d'aquest per població, per a una millor lectura del
 resultat
-```
-  SELECT COMARQUES.nom_c, provincia, POBLACIONS.nom, INSTITUTS.nom  
-    FROM (COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c)  
-    INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
-    ORDER BY 1,3;
-```
+
+    SELECT COMARQUES.nom_c, provincia, POBLACIONS.nom, INSTITUTS.nom  
+      FROM (COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c)  
+      INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+      ORDER BY 1,3;
+
 Podríem posar la consulta de la forma alternativa, en què les condicions de
 reunió van en el WHERE. Òbviament aquestes condicions han d'anar unides per
 l'operador AND.
-```
-  SELECT COMARQUES.nom_c, provincia, POBLACIONS.nom, INSTITUTS.nom  
-    FROM COMARQUES , POBLACIONS , INSTITUTS  
-    WHERE COMARQUES.nom_c=POBLACIONS.nom_c AND POBLACIONS.cod_m=INSTITUTS.cod_m  
-    ORDER BY 1,3;
-```
+
+    SELECT COMARQUES.nom_c, provincia, POBLACIONS.nom, INSTITUTS.nom  
+      FROM COMARQUES , POBLACIONS , INSTITUTS  
+      WHERE COMARQUES.nom_c=POBLACIONS.nom_c AND POBLACIONS.cod_m=INSTITUTS.cod_m  
+      ORDER BY 1,3;
+
 Anem a plantejar un altre exemple. Es tracta de traure el nom i la província
 de les comarques, amb el número d'Instituts que hi ha en elles. En principi
 podríem pensar que les úniques taules que ens fan falta són COMARQUES (per a
@@ -214,10 +214,10 @@ INSTITUTS). Si intentem fer aquesta consulta, **NO** obtindrem el resultat
 desitjat.
 
 
-!!! warning "Aviso"
+!!! warning ""
     **SELECT nom_c, provincia, COUNT(codi)**{.rojo}  
-    **FROM COMARQUES , INSTITUTS)**{.rojo}  
-    **GROUP BY nom_c, provincia)**{.rojo}  
+    **FROM COMARQUES , INSTITUTS**{.rojo}  
+    **GROUP BY nom_c, provincia**{.rojo}  
 
 
 Evidentment hi haurà un producte cartesià, ja que no hem combinat les taules,
@@ -232,20 +232,20 @@ també ens dóna la solució: **haurem de posar també la taula POBLACIONS**
 encara que no vulguem visualitzar cap camp d'aquesta taula, ja que si estan
 relacionades les taules INSTITUTS i COMARQUES és a través d'aquesta taula. Per
 tant la consulta correcta serà:
-```
-  SELECT COMARQUES.nom_c, provincia, COUNT(codi)  
-    FROM (COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c)  
-    INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
-    GROUP BY COMARQUES.nom_c, provincia
-```
+
+    SELECT COMARQUES.nom_c, provincia, COUNT(codi)  
+      FROM (COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c)  
+      INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+      GROUP BY COMARQUES.nom_c, provincia
+
 La forma alternativa sembla més curta. Està clar que si són 3 taules, hauran
 d'haver 2 condicions de combinació unides per AND.
-```
-  SELECT COMARQUES.nom_c, provincia, COUNT(codi)  
-    FROM COMARQUES , POBLACIONS , INSTITUTS  
-    WHERE COMARQUES.nom_c=POBLACIONS.nom_c AND POBLACIONS.cod_m=INSTITUTS.cod_m  
-    GROUP BY COMARQUES.nom_c, provincia;
-```
+
+    SELECT COMARQUES.nom_c, provincia, COUNT(codi)  
+      FROM COMARQUES , POBLACIONS , INSTITUTS  
+      WHERE COMARQUES.nom_c=POBLACIONS.nom_c AND POBLACIONS.cod_m=INSTITUTS.cod_m  
+      GROUP BY COMARQUES.nom_c, provincia;
+
 De forma general, si tenim _**n**_ taules en una consulta, ens faran falta
 _**n-1**_ condicions de combinació unides per AND. Per exemple, si en una
 consulta entren 5 taules, per a no tenir cap producte cartesià ens faran falta
@@ -262,21 +262,21 @@ aquest exemple.
 Suposem que la nostra taula de POBLACIONS fóra lleugerament diferent, i que
 incorporara un camp nou amb el codi del municipi que és capital de comarca de
 la població:
-```
-  POBLACIONS  
-  (  
-  cod_m numeric(5,0) CONSTRAINT cp_pobl PRIMARY KEY,  
-  nom character varying(50) NOT NULL,  
-  poblacio numeric(6,0),  
-  extensio numeric(6,2),  
-  altura numeric(4,0),  
-  longitud character varying(50),  
-  latitud character varying(50),  
-  llengua character(1),  
-  nom_c character varying(50),  
-  ***cod_capital numeric(5,0) CONSTRAINT ce_capital REFERENCES POBLACIONS(cod_m)  
-  )
-```
+
+    POBLACIONS  
+    (  
+    cod_m numeric(5,0) CONSTRAINT cp_pobl PRIMARY KEY,  
+    nom character varying(50) NOT NULL,  
+    poblacio numeric(6,0),  
+    extensio numeric(6,2),  
+    altura numeric(4,0),  
+    longitud character varying(50),  
+    latitud character varying(50),  
+    llengua character(1),  
+    nom_c character varying(50),  
+    ***cod_capital numeric(5,0) CONSTRAINT ce_capital REFERENCES POBLACIONS(cod_m)  
+    )
+
 Per a poder traure al mateix temps el nom de les poblacions i el nom de la
 seua capital de comarca no tenim prou amb posar la taula POBLACIONS una
 vegada: només trauríem el nom de la població i ens quedaríem amb el codi de
@@ -287,22 +287,22 @@ distingirem entre les dues instàncies? Doncs posant un nom a cadascuna. En
 general podem posar un nom en la sentència a qualsevol taula que aparega,
 posant aquest nom a continuació de la taula (opcionalment podríem posar AS
 enmig):
-```
-  SELECT ...  
-    FROM taula T
-```
+
+    SELECT ...  
+      FROM taula T
+
 En la resta de la consulta haurem d'utilitzar aquest nom. L'exemple quedarà de
 la següent manera:
-```
-  SELECT P1.nom AS "Nom població" , P2.nom as "Nom capital"  
-    FROM POBLACIONS P1 INNER JOIN POBLACIONS P2 ON P1.cod_capital=P2.cod_m
-```
+
+    SELECT P1.nom AS "Nom població" , P2.nom as "Nom capital"  
+      FROM POBLACIONS P1 INNER JOIN POBLACIONS P2 ON P1.cod_capital=P2.cod_m
+
 o de la forma alternativa:
-```  
-  SELECT P1.nom AS "Nom població" , P2.nom as "Nom capital"  
-    FROM POBLACIONS P1, POBLACIONS P2  
-    WHERE P1.cod_capital=P2.cod_m
-```
+  
+    SELECT P1.nom AS "Nom població" , P2.nom as "Nom capital"  
+      FROM POBLACIONS P1, POBLACIONS P2  
+      WHERE P1.cod_capital=P2.cod_m
+
 !!! note "Nota"
     Recordeu que aquestes instruccions no les podem provar, perquè no tenim el
     camp <b>cod_capital</b>.
@@ -316,17 +316,17 @@ formada per 2 camps, la clau externa de COMPTE CORRENT, que apunta a la
 primera també estarà formada per 2 camps. Si volem traure el número de compte
 corrent, el nom de la sucursal d'on és el compte, i el saldo, ens faran falta
 les dues taules. Aquesta seria la manera de combinar-les:
-```
-  SELECT C.n_ent , C.n_suc , n_cc , S.nom , C.saldo  
-    FROM SUCURSAL S INNER JOIN COMPTE_CORRENT C ON S.n_ent=C.n_ent AND
-    S.n_suc=C.n_suc
-```
+
+    SELECT C.n_ent , C.n_suc , n_cc , S.nom , C.saldo  
+      FROM SUCURSAL S INNER JOIN COMPTE_CORRENT C ON S.n_ent=C.n_ent AND
+      S.n_suc=C.n_suc
+
 o de la forma alternativa:
-```
-  SELECT C.n_ent , C.n_suc , n_cc , S.nom , C.saldo  
-    FROM SUCURSAL S, COMPTE_CORRENT C  
-    WHERE S.n_ent=C.n_ent AND S.n_suc=C.n_suc
-```
+
+    SELECT C.n_ent , C.n_suc , n_cc , S.nom , C.saldo  
+      FROM SUCURSAL S, COMPTE_CORRENT C  
+      WHERE S.n_ent=C.n_ent AND S.n_suc=C.n_suc
+
 En ambdós casos s'ha optat per posar nom a les taules (S i C respectivament)
 per comoditat, per a que no quedara tan llarga la consulta.
 
@@ -382,28 +382,28 @@ de la dreta.
 
 Per a traure TOTES les files de la taula de l'esquerra, i aquelles que
 estiguen relacionades de la de la dreta:
-```
-  SELECT ...  
-  FROM taula1 LEFT [OUTER] JOIN taula2 ON _condició_
-```
+
+    SELECT ...  
+    FROM taula1 LEFT [OUTER] JOIN taula2 ON _condició_
+
 Així traurem TOTES les files de taula1, i aquelles que estiguen relacionades
 de taula2.
 
 Per a fer-ho al revès, és a dir, totes les files de la taula de la dreta i
 aquelles files que estiguen relacionades de l'esquerra:
-```
-  SELECT ...  
-  FROM taula1 RIGHT [OUTER] JOIN taula2 ON _condició_
-```
+
+    SELECT ...  
+    FROM taula1 RIGHT [OUTER] JOIN taula2 ON _condició_
+
 D'aquesta manera traurem TOTES les files de taula2, i aquelles que estiguen
 relacionades de taula1.
 
 En el nostre exemple:
-```
-  SELECT POBLACIONS.nom,INSTITUTS.nom  
-  FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
-  ORDER BY 1
-```
+
+    SELECT POBLACIONS.nom,INSTITUTS.nom  
+    FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+    ORDER BY 1
+
 on hem ordenat pel nom de la població per a una millor lectura, i ens donarà
 el següent resultat:
 
@@ -428,12 +428,12 @@ agafe el valor nul en la combinació externa és que la població no tinga
 institut, i aleshores en el moment de comptar ens donarà el valor 0.
 
 Aquesta serà la consulta, on hem tornat a ordenar pel nom de la població
-```
-  SELECT POBLACIONS.nom,COUNT(INSTITUTS.codi)  
-  FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
-  GROUP BY POBLACIONS.nom  
-  ORDER BY 1
-```
+
+    SELECT POBLACIONS.nom,COUNT(INSTITUTS.codi)  
+    FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+    GROUP BY POBLACIONS.nom  
+    ORDER BY 1
+
 I aquest serà el resultat
 
 ![](T6_II_2_3_2.png)
@@ -444,12 +444,12 @@ la condició posar justament que un dels camps de la taula INSTITUTS siga nul
 (per exemple, la clau principal):
 
 Aquesta serà la consulta, on hem tornat a ordenar pel nom de la població:
-```
-  SELECT POBLACIONS.nom  
-  FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
-  WHERE INSTITUTS.codi IS NULL  
-  ORDER BY 1
-```
+
+    SELECT POBLACIONS.nom  
+    FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+    WHERE INSTITUTS.codi IS NULL  
+    ORDER BY 1
+
 I aquest serà el resultat:
 
 ![](T6_II_2_3_3.png)
@@ -463,12 +463,12 @@ que no tinga pobles. De tota manera, la manera seria fent un LEFT JOIN entre
 COMARQUES i POBLACIONS, per a després agrupar per comarca i comptar les
 poblacions. Observeu com també podem utilitzar la sintaxi del **USING** en el
 LEFT JOIN.
-```
-  SELECT COMARQUES.nom_c, COUNT(cod_m)  
-  FROM COMARQUES LEFT JOIN POBLACIONS USING(nom_c)  
-  GROUP BY COMARQUES.nom_c  
-  ORDER BY 1;
-```
+
+    SELECT COMARQUES.nom_c, COUNT(cod_m)  
+    FROM COMARQUES LEFT JOIN POBLACIONS USING(nom_c)  
+    GROUP BY COMARQUES.nom_c  
+    ORDER BY 1;
+
 
 ### :pencil2: Exercicis
 

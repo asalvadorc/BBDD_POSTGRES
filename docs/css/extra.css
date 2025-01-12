@@ -17,7 +17,7 @@ p {
 }
 
 .rojo {
-    color: red !important;
+    color: red;
 }
 
 .azul {
@@ -27,9 +27,9 @@ p {
 .verde {
     color: green !important;
 } 
-
+/*
 code, pre {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
-
+*/

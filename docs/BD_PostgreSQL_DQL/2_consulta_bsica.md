@@ -25,7 +25,7 @@ En **<columnes>** podrem posar (separades per **comes**):
 
   * **noms de les columnes** que volem; si hi ha confusió entre noms de camps de distintes taules, haurem de posar **Taula.columna**.
 
-  * ***** : indica totes les columnes.
+  * `*` : indica totes les columnes.
 
   * **Taula.*** : indica totes les columnes de la taula.
 
