@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/7_funcions/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>4.2. Funcions - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "4.2. Funcions";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL/7_funcions.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/7_funcions/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >4. Operadors i Funcions de Postgres</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">4.2. Funcions</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#421-formats-de-les-dates">4.2.1 Formats de les dates</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#422-formats-dels-numeros">4.2.2 Formats dels números</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">SQL - POSTGRES</li>
+          <li class="breadcrumb-item">4. Operadors i Funcions de Postgres</li>
+      <li class="breadcrumb-item active">4.2. Funcions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="42-funcions">4.2 Funcions</h1>
+<p>Com veurem un poc més avant, en les sentències SQL, a banda de columnes i
+valors constants, podrem utilitzar funcions.</p>
+<p>PostgreSQL té moltes funcions ja creades.</p>
+<p>Farem un recull de les funcions més importants de PostgreSQL, d'entre la
+multitud de funcions que existeixen. Les agruparem per categories.</p>
+<p>Evidentment aquest recull no és per aprendre'l de memòria, sinó que servirà de
+consulta.</p>
+<p><strong class="azul">Funcions numèriques</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funció</th>
+<th>Explicació</th>
+<th>Funció</th>
+<th>Explicació</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ABS(n)</td>
+<td>Valor absolut de n.</td>
+<td>LOG(m,n)</td>
+<td>Logaritme, base m, de n</td>
+</tr>
+<tr>
+<td>ACOS(n)</td>
+<td>Arccosinus de n (invers del cosinus)</td>
+<td>MOD(m,n)</td>
+<td>La resta de la divisió entre m i n</td>
+</tr>
+<tr>
+<td>ASIN(n)</td>
+<td>Arcsinus de n (invers de sinus)</td>
+<td>POWER(m,n)</td>
+<td>m elevat a n</td>
+</tr>
+<tr>
+<td>ATAN(n)</td>
+<td>Arctangent de n (invers de la tangent)</td>
+<td>RANDOM()</td>
+<td>número aleatori entre 0 i 1</td>
+</tr>
+<tr>
+<td>CEIL(n)</td>
+<td>Enter immediatament superior o igual a n</td>
+<td>Round(n,[m])</td>
+<td>n arrodonit a m xifres decimals (per defecte 0)</td>
+</tr>
+<tr>
+<td>COS(n)</td>
+<td>Cosinus de n.</td>
+<td>SIN(n)</td>
+<td>Sinus de n</td>
+</tr>
+<tr>
+<td>EXP(n)</td>
+<td>Exponencial de n (en)</td>
+<td>SQRT(n)</td>
+<td>Arrel quadrada de n</td>
+</tr>
+<tr>
+<td>FLOOR(n)</td>
+<td>Enter immediatament inferior o igual a n</td>
+<td>TAN(n)</td>
+<td>Tangent de n</td>
+</tr>
+<tr>
+<td>LN(n)</td>
+<td>Logaritme neperià de n</td>
+<td>Trunc(n,[m])</td>
+<td>n truncat a m xifres decimals  (per defecte 0)</td>
+</tr>
+</tbody>
+</table>
+<p>Per exemple, podríem simular el llançament d'un dau d'aquesta manera:
+<div class="highlight"><pre><span></span><code>SELECT TRUNC(RANDOM()*6+1);
+</code></pre></div></p>
+<p><strong class="azul">Funcions de caràcters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funció</th>
+<th>Explicació</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASCII(c)</td>
+<td>Torna el codi ASCII corresponent al caràcter c</td>
+</tr>
+<tr>
+<td>REPLACE(c1,c2,c3)</td>
+<td>Reemplaça en <strong>c1</strong> cada ocurrència de <strong>c2</strong> per <strong>c3</strong></td>
+</tr>
+<tr>
+<td>CHR(n)</td>
+<td>Torna el caràcter amb codi ASCII n.</td>
+</tr>
+<tr>
+<td>RPAD(c1,n[c2])</td>
+<td>Torna <strong>c1</strong> reomplida per la dreta fins <strong>n</strong> caràcters amb la cadena <strong>c2</strong></td>
+</tr>
+<tr>
+<td>CONCAT(c1,c2)</td>
+<td>Concatena les dues cadenes (equivalent a l'operador</td>
+</tr>
+<tr>
+<td>INITCAP(c1)</td>
+<td>Torna la cadena amb la primera lletra de cada paraula en majúscules, i les altres en minúscules</td>
+</tr>
+<tr>
+<td>STRPOS(s,s1)</td>
+<td>Busca la primera ocurrència de la subcadena s1 dins de la cadena s</td>
+</tr>
+<tr>
+<td>LENGTH(c1)</td>
+<td>Llargària de la cadena. Si c1 és de tipus CHAR, inclourà tots els espais en blanc del final.</td>
+</tr>
+<tr>
+<td>SUBSTR(c1,m[,n])</td>
+<td>Torna una subcadena de c1 que comença en el caràcter m i consta de n caràcters (per defecte fins el final)</td>
+</tr>
+<tr>
+<td>LPAD(c1,n[c2])</td>
+<td>Torna c1 reomplida per l’esquerra fins n caràcters amb la cadena c2</td>
+</tr>
+<tr>
+<td>TRANSLATE(c1,c2,c3)</td>
+<td>Torna c1 amb cada caràcter de c2 substituït pel corresponent (en ordre) de c3.</td>
+</tr>
+<tr>
+<td>LTRIM(c1[,set])</td>
+<td>Retalla per l’esquerra mentre troba la cadena set (per defecte blancs)</td>
+</tr>
+<tr>
+<td>LOWER(c1)</td>
+<td>Torna la cadena en minúscules</td>
+</tr>
+<tr>
+<td>UPPER(c1)</td>
+<td>Torna la cadena en majúscules</td>
+</tr>
+</tbody>
+</table>
+<p>Per exemple, traurem els graus de la latitud de les poblacions. Haurem
+d'agafar els 2 primers caràcters (els de l'esquerra).
+<div class="highlight"><pre><span></span><code>SELECT nom , latitud , SUBSTR(latitud,1,2)  
+FROM POBLACIONS;
+</code></pre></div>
+Açò ho podríem millorar, ja que d'aquesta manera obliguem a que siguen sempre
+dos caràcters, els graus. De forma més genèrica, els graus és el que va davant
+del símbol <strong>º</strong>. Per tant el que podem fer és buscar aquest símbol i traure
+els de davant (des del primer fins a l'anterior a ell)
+<div class="highlight"><pre><span></span><code>SELECT nom , latitud , SUBSTR(latitud,1,STRPOS(latitud,&#39;º&#39;)-1)  
+FROM POBLACIONS;
+</code></pre></div>
+Per agafar els minuts de forma senzilla seria traure els caràcters 4t i 5è, és
+a dir, 2 caràcters a partir del 4.
+<div class="highlight"><pre><span></span><code>SELECT nom , latitud , SUBSTR(latitud,4,2)  
+FROM POBLACIONS;
+</code></pre></div>
+Però de forma més genèrica (per si no s'han posat 0 no significatius), haurem
+de traure des de després del símbol <strong>º</strong> fins al caràctar anterior a <strong>'</strong>
+(la cometa) que assenyala els minuts. Tenim a més la dificultat afegida que la
+cometa justament és la manera d'especificar un text en SQL. Haurem de posar
+dos cometes per a escapar, i com que és un text va entre cometes. Resultat: 4
+cometes.
+<div class="highlight"><pre><span></span><code>SELECT nom , latitud ,
+SUBSTR(latitud,STRPOS(latitud,&#39;º&#39;)+1,STRPOS(latitud,&#39;&#39;&#39;&#39;)-STRPOS(latitud,&#39;º&#39;)-1)  
+FROM POBLACIONS;
+</code></pre></div>
+I el mateix faríem per als segons, (entre la cometa simple i la doble).</p>
+<p>Aquesta sentència resumeix l'anterior, separant graus, minuts i segons.
+<div class="highlight"><pre><span></span><code>SELECT nom, latitud,  
+SUBSTR(latitud,1,STRPOS(latitud,&#39;º&#39;)-1),  
+SUBSTR(latitud,STRPOS(latitud,&#39;º&#39;)+1,STRPOS(latitud,&#39;&#39;&#39;&#39;)-STRPOS(latitud,&#39;º&#39;)-1),  
+SUBSTR(latitud,STRPOS(latitud,&#39;&#39;&#39;&#39;)+1,STRPOS(latitud,&#39;&quot;&#39;)-STRPOS(latitud,&#39;&#39;&#39;&#39;)-1)  
+FROM POBLACIONS;
+</code></pre></div></p>
+<p><strong class="azul">Funcions de data</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funció</th>
+<th>Explicació</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NOW() (CURRENT_TIMESTAMP)</td>
+<td>Torna la data-hora actual, amb la diferència d'hores respecte la GMT</td>
+</tr>
+<tr>
+<td>LOCALTIMESTAMP</td>
+<td>Igual que l'anterior, però sense la diferència de la GMT</td>
+</tr>
+<tr>
+<td>CURRENT_DATE</td>
+<td>Torna la data actual</td>
+</tr>
+<tr>
+<td>CURRENT_TIME</td>
+<td>Torna l'hora actual (amb diferència GMT)</td>
+</tr>
+<tr>
+<td>LOCALTIME</td>
+<td>Torna l'hora actual (sense diferència GMT)</td>
+</tr>
+<tr>
+<td>AGE(t)</td>
+<td>Torna la diferència de la data actual i t</td>
+</tr>
+<tr>
+<td>AGE(t1,t2)</td>
+<td>Torna la diferència entre t1 (posterior) i t2 (anterior)</td>
+</tr>
+<tr>
+<td>EXTRACT(camp FROM t)</td>
+<td>Trau el número corresponent al camp (que pot ser year, month, day, hour, minute, second, millisecond, microsecond, dow (day of week), ...</td>
+</tr>
+</tbody>
+</table>
+<p>Per exemple, ¿quan de temps ha passat des de l'intent de cop d'estat?
+<div class="highlight"><pre><span></span><code>SELECT AGE(&#39;1981/02/23&#39;::DATE);
+</code></pre></div>
+O un altre, ¿en quin any estem?
+<div class="highlight"><pre><span></span><code>SELECT EXTRACT(year FROM CURRENT_DATE);
+</code></pre></div>
+<strong><u>Funcions geomètriques</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Funció</th>
+<th>Explicació</th>
+<th>Funció</th>
+<th>Explicació</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AREA(o)</td>
+<td>Àrea de l'objecte</td>
+<td>HEIGTH(r)</td>
+<td>Altura del rectàngle</td>
+</tr>
+<tr>
+<td>CENTER(o)</td>
+<td>Centre de l'objecte</td>
+<td>RADIUS(c)</td>
+<td>Radi del cercle</td>
+</tr>
+<tr>
+<td>DIAMETER(c)</td>
+<td>Diàmetre del cercle</td>
+<td>WIDTH(r)</td>
+<td>Amplària del rectàngle</td>
+</tr>
+</tbody>
+</table>
+<p>Per exemple, l'àrea d'un cercle:
+<div class="highlight"><pre><span></span><code>SELECT AREA(&#39;((5,5),2)&#39;::CIRCLE);
+</code></pre></div></p>
+<p><strong class="azul">Funcions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funció</th>
+<th>Explicació</th>
+<th>Exemple</th>
+<th>Resultat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HOST(ip)</td>
+<td>Trau en format text l'adreça IP</td>
+<td>HOST('192.168.2.15/24')</td>
+<td>192.168.2.15</td>
+</tr>
+<tr>
+<td>MASKLEN(ip)</td>
+<td>Trau el número de bits de la màscara</td>
+<td>MASKLEN('192.168.2.15/24')</td>
+<td>24</td>
+</tr>
+<tr>
+<td>SET_MASKLEN(ip,n)</td>
+<td>Posa el número de bits de la màscara als especificats</td>
+<td>SET_MASKLEN('192.168.2.15/24',16)</td>
+<td>192.168.2.15/16</td>
+</tr>
+<tr>
+<td>NETMASK(ip)</td>
+<td>Construeix la màscara de xarxa</td>
+<td>NETMASK('192.168.2.15/24')</td>
+<td>255.255.255.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">Funcions de conversió</strong></p>
+<p>Serviran per a passar d'un tipus a un altre, on un d'ells serà el tipus de
+cadena (VARCHAR)</p>
+<table>
+<thead>
+<tr>
+<th>Funció</th>
+<th>Explicació</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TO_CHAR(<em>data, format</em>)</strong></td>
+<td>Converteix una data en una tira de caràcters, utilitzant el format especificat (es veurà aquest format en la següent pregunta)</td>
+</tr>
+<tr>
+<td><strong>TO_CHAR(<em>número, format</em>)</strong></td>
+<td>Converteix un número en una tira de caràcters</td>
+</tr>
+<tr>
+<td><strong>TO_NUMBER(<em>exp., format</em>)</strong></td>
+<td>Converteix una tira de caràcters en un número, suposant que estava en el format indicat</td>
+</tr>
+<tr>
+<td><strong>TO_DATE(<em>exp., format</em>)</strong></td>
+<td>Converteix una tira de caràcters en un data</td>
+</tr>
+<tr>
+<td><strong>TO_DATETIME(<em>exp., format</em>)</strong></td>
+<td>converteix una tira de caràcters en un data-hora</td>
+</tr>
+</tbody>
+</table>
+<h2 id="421-formats-de-les-dates">4.2.1 Formats de les dates</h2>
+<p>Aquest tipus és molt versàtil en quant al format, bé siga per a la introducció
+de les dades, o el que és més habitual, per a la seua presentació. S'haurà
+d'utilitzar una funció, <strong>TO_CHAR</strong> , que acceptarà 2 paràmetres: el primer la
+data que es vol presentar, i el segon el format que volem. En el format
+indicarem per mig de determinats caràcters l'aspecte que volem. Per exemple,
+per a traure la data d'avui amb el format dia-mes-any, posaríem:
+<div class="highlight"><pre><span></span><code>SELECT TO_CHAR( NOW(), &#39;DD-MM-YYYY&#39;);
+</code></pre></div>
+El següent quadre resumeix aquestos caràcters, agrupat per categories:</p>
+<p><img alt="" src="../T6_f1.png" /></p>
+<p>En principi els formats que tornen lletres ho estaran en anglès, però després
+veurem com canviar d'idioma.</p>
+<p><img alt="" src="../T6_f2.png" /></p>
+<p><img alt="" src="../T6_f3.png" /></p>
+<p><strong><u>Exemples:</u></strong></p>
+<p>Si ara fóra <strong>9/1/16 13:39</strong> (en el servidor, no en la vostra màquina), i
+férem <strong>SELECT TO_CHAR(NOW(),'<em>format</em></strong><strong>');</strong></p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Eixida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dd-mm-yy hh:mi</td>
+<td><strong>09-01-23 01:39</strong></td>
+</tr>
+<tr>
+<td>dd-mm-yy hh24:mi</td>
+<td><strong>09-01-16 13:39</strong></td>
+</tr>
+<tr>
+<td>dd-MON-yyy</td>
+<td><strong>09-JAN-023</strong></td>
+</tr>
+<tr>
+<td>dd-TMMON-yyy</td>
+<td><strong>09-ENE-023 <em>(si el tinguérem configurat en espanyol)</em></strong></td>
+</tr>
+<tr>
+<td>Day, dd "de" month "de" yyyy</td>
+<td><strong>Monday , 09 de january de 2023 de 2016</strong></td>
+</tr>
+<tr>
+<td>FMDay, dd "de" FMmonth "de" yyyy.</td>
+<td><strong>Monday, 09 de january de 2023.</strong></td>
+</tr>
+<tr>
+<td>TMDay, dd "de" TMmonth "de" yyyy.</td>
+<td><strong>Lunes, 09 de enero de 2023.</strong><em>(si el tinguérem configurat en espanyol)</em></td>
+</tr>
+<tr>
+<td>FMDy PM FMhh-FMmi-FMss</td>
+<td><strong>Mon PM 1-39-00</strong></td>
+</tr>
+<tr>
+<td>TMDy PM TMhh-TMmi-TMss</td>
+<td><strong>Lun PM 01-39-00 __</strong><em>(si el tinguérem configurat en espanyol)</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="422-formats-dels-numeros">4.2.2 Formats dels números</h2>
+<p>També podrem utilitzar la funció <strong>TO_CHAR</strong> per a donar l'aspecte que vulguem
+als números. En la següent taula tenim un resum amb els diferents símbols, un
+comentari descriptiu de cada símbol, i un exemple de format amb el resultat
+que donaria per a un determinat valor. La sentència seria <strong>SELECT
+TO_CHAR(</strong><em>valor</em><strong>,'</strong><em>format</em><strong>');</strong> :</p>
+<p><img alt="" src="../T6_f4.png" /></p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 3.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../6_operadors/" class="btn btn-neutral float-left" title="4.1. Operadors"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../1_la_consulta_select/" class="btn btn-neutral float-right" title="1. La consulta SELECT">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../6_operadors/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../1_la_consulta_select/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

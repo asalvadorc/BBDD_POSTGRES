@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/1_introducci/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>1. Introducció - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "1. Introducci\u00f3";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL/1_introducci.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/1_introducci/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">1. Introducció</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#ddl-dql-i-dml">DDL, DQL i DML</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >4. Operadors i Funcions de Postgres</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">SQL - POSTGRES</li>
+      <li class="breadcrumb-item active">1. Introducció</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="1-introduccio">1. Introducció</h1>
+<p><strong>SQL</strong> és un llenguatge per a organitzar, gestionar i recuperar dades
+emmagatzemades en una Base de Dades. El nom "<strong>SQL</strong>" és una abreviatura de
+<em><strong>Structured Query Language</strong></em> (Llenguatge Estructurat de Consultes), i com
+el seu nom indica, és un llenguatge informàtic que es pot utilitzar per a
+interaccions amb una Base de Dades de tipus relacional.</p>
+<p>SQL s'utilitza per a controlar totes les funcions que un SGBD proporciona als
+seus usuaris, incloent:</p>
+<ul>
+<li>
+<p><strong><em>Definició de dades</em></strong>. SQL permet a un usuari definir l'estructura i organització de les dades emmagatzemades i les relacions existents entre elles (claus externes).</p>
+</li>
+<li>
+<p><strong><em>Recuperació de dades</em></strong>. SQL permet a un usuari o a un programa d'aplicació recuperar les dades emmagatzemades de la base de dades i utilitzar-les.</p>
+</li>
+<li>
+<p><strong><em>Manipulació de dades</em></strong>. SQL permet a un usuari o a un programa d'aplicació actualitzar la base de dades afegint noves dades, suprimint dades antigues i modificant dades prèviament emmagatzemades.</p>
+</li>
+<li>
+<p><strong><em>Control d'accés</em></strong>. SQL pot ser utilitzat per a restringir la capacitat d'un usuari per a recuperar, afegir i modificar dades, protegint així les dades guardades davant d'accessos no autoritzats.</p>
+</li>
+<li>
+<p><strong><em>Compartició de dades</em></strong>. SQL s'utilitza per a coordinar la compartició de dades per part d'usuaris concurrents, assegurant que no interfereixen entre ells.</p>
+</li>
+<li>
+<p><strong><em>Integritat de dades</em></strong>. SQL defineix restriccions d'integritat en la base de dades, protegint-la contra corrupcions causades per actualitzacions inconsistents o per fallades del sistema.</p>
+</li>
+</ul>
+<p>SQL no és realment un llenguatge informàtic complet tal com JAVA, C o Python.
+SQL no disposa de la sentència <em>IF</em> per a examinar condicions, ni de les
+sentències <em>WHILE</em> o <em>FOR</em> per a fer bucles, per exemple. En compte d'això,
+SQL és un subllenguatge de base de dades, que consta d'unes trenta sentències
+especialitzades per a tasques de gestió de bases de dades, però <strong>només 7 són
+les sentències principals</strong>.</p>
+<p>També es diu que és un llenguatge de <strong>quarta generació</strong> perquè en ell es diu
+quina informació es vol, sense especificar exactament com s'aconsegueix
+aquesta informació.</p>
+<p>També es diu que és un llenguatge orientat a <strong>conjunt de registres</strong> , ja que
+una sentència pot tornar un conjunt de registres. Açò és un gran avantatge amb
+els llenguatges de tercera generació, que només podien treballar registre a
+registre.</p>
+<p>Dues són les maneres d'executar sentències SQL.</p>
+<ul>
+<li><strong>De forma interactiva</strong> : s'escriu una sentència SQL, i s'executa, tornant normalment un conjunt de registres que es presentaran en forma tabular. En <strong>Access</strong> el lloc on procedir d'aquesta manera és en les <strong>consultes</strong> , triant <em><strong>Vista SQL</strong></em>. Tindrem lloc per escriure la sentència tal i com es mostra en la primera imatge. En la segona imatge, es mostra una consulta ja feta en el tema anterior, però veient-la en SQL. En la tercera hem executat la consulta:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><img alt="" src="../T6_1_1_1.png" /></th>
+<th><img alt="" src="../T6_1_1_2.png" /></th>
+<th><img alt="" src="../T6_1_1_3.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Dins d'un programa</strong> escrit en un altre llenguatge, que actuarà com llenguatge amfitrió (i el SQL seria el llenguatge host, "<em>huesped</em> "). En el cas de Access podríem incloure sentències SQL en Visual Basic. D'aquesta manera s'estén el llenguatge amfitrió i li permet accedir a la Base de Dades.</li>
+</ul>
+<p>SQL és el llenguatge estàndard d'accés i manipulació de Bases de Dades dels
+Sistemes Gestors de Bases de Dades Relacionals. A tots, absolutament a tots
+els SGBD Relacionales comercials es pot accedir per SQL.</p>
+<h2 id="ddl-dql-i-dml">DDL, DQL i DML</h2>
+<p>Com s'ha comentat en la pregunta anterior, SQL ens permet definir, controlar i
+accedir a una Base de Dades.</p>
+<p>Farem una distinció principal entre aquestes funcions, separant el que són les
+estructures de les taules i el contingut de les taules. En aquest sentit
+tindrem 3 subtipus de llenguatges:</p>
+<ul>
+<li><strong>DDL</strong> (<em>Data Definition Language</em> o <em>Llenguatge de Definició de Dades</em>): permet definir, modificar o esborrar les estructures, com poden ser taules, vistes, índex, ... i fins i tot Bases de Dades. 
+  Bàsicament les sentències són 3:   </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CREATE</strong></td>
+<td>per a crear l'estructura</td>
+</tr>
+<tr>
+<td><strong>ALTER</strong></td>
+<td>per a modificar-la</td>
+</tr>
+<tr>
+<td><strong>DROP</strong></td>
+<td>per a esborrar-la</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>DQL</strong> (<em>Data Query Language</em> o <em>Llenguatge de Consulta de Dades</em>): permet consultar dades d'una base de dades.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>SELECT</strong></th>
+<th>per a consultar dades</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>DML</strong> (<em>Data Manipulation Language</em> o <em>Llenguatge de Manipulació de Dades</em>): permet accedir al contingut de les estructures, a les dades. Aquest accés pot ser de dos tipus: per a consultar o per a modificar les dades  </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>INSERT</strong></td>
+<td>insereix noves files</td>
+</tr>
+<tr>
+<td><strong>UPDATE</strong></td>
+<td>modifica el contingut de files ja existents</td>
+</tr>
+<tr>
+<td><strong>DELETE</strong></td>
+<td>esborra files</td>
+</tr>
+</tbody>
+</table>
+<p>El llenguatge SQL és més extens que les sentències anteriors, incorporant
+també el que s'anomena <strong>DCL</strong> (<em>Data Control Language</em> o <em>Llenguatge de
+Control de Dades</em>), que permet controlar les dades per a donar permisos o
+llevar-los sobre les dades, o controlar les transaccions, ..., però de moment
+ens aconformarem amb les sentències de DML i DDL, i aquestes últimes,
+sobretot, per a definir taules.</p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 3.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../objectius_i_coneixements_previs/" class="btn btn-neutral float-left" title="Objectius i Coneixements previs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2_client_dbeaver_installaci_i_confiuraci/" class="btn btn-neutral float-right" title="2. DBeaver">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../objectius_i_coneixements_previs/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../2_client_dbeaver_installaci_i_confiuraci/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

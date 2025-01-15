@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Exercicis amb els resultats (part II) - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercicis amb els resultats (part II)";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >4. Operadors i Funcions de Postgres</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../BD_PostgreSQL_DQL/6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../BD_PostgreSQL_DQL/7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercicis amb els resultats (part II)</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">DQL Consultes avançades (part II)</li>
+      <li class="breadcrumb-item active">Exercicis amb els resultats (part II)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercicis-amb-els-resultats-part-ii">Exercicis amb els resultats (part II)</h1>
+<p><strong>Ex_51</strong> Traure el nom dels clients amb el número de factura i la data
+(individuals, sense agrupar res) que té cada client. Trau el resultat ordenat
+per client, i dins d'aquest per data de la factura</p>
+<p><img alt="" src="../Ex_6_51.png" /></p>
+<p>Un total de <strong>105 files</strong></p>
+<p><strong>Ex_52</strong> Traure el nom del soci, amb el codi i la descripció de cada
+article que ha demanat. Ordena per nom del soci i codi de l'article.</p>
+<p><img alt="" src="../Ex_6_52.png" /></p>
+<p>Un total de <strong>541 files</strong></p>
+<p><strong>Ex_53</strong> Modificar l'anterior per a que no es repetesquen els resultats.</p>
+<p><img alt="" src="../Ex_6_53.png" /></p>
+<p>Un total de <em>*</em><em>532 files</em><em>*</em></p>
+<p>Observa com ara no es repeteix la fila 10 i 11, i abans sí</p>
+<p><strong>Ex_54</strong> Traure el nom dels clients amb la quantitat de factures que
+tenen, ordenades per aquest número de major a menor</p>
+<p><img alt="" src="../Ex_6_54.png" /></p>
+<p>Un total de <strong>40 files</strong></p>
+<p><strong>Ex_55</strong> Traure el número de factura, data, codi de client, total de la
+factura (amb l'àlies IMPORT) i total de la factura aplicant descomptes
+d'article (amb àlies DESCOMPTE_1), com en la consulta<strong>Ex_33</strong> , però sense el
+límit de les 10 línies de factura. Ordena per número de factura.</p>
+<p><img alt="" src="../Ex_6_55.png" /></p>
+<p>Un total de <strong>105 files</strong></p>
+<p><strong>Ex_56</strong> Modificar l'anterior per a aplicar també el descompte de la
+factura (amb l'àlies DESCOMPTE_2)</p>
+<p><img alt="" src="../Ex_6_56.png" /></p>
+<p>Un total de <strong>105 files</strong></p>
+<p><strong>Ex_57</strong> Traure el codi i nom d'aquells venedors que supervisen algú
+(consten com a cap). Traure també el número de supervisats de cadascun
+d'aquestos supervisors.</p>
+<p><img alt="" src="../Ex_6_57.png" /></p>
+<p><strong>Ex_58</strong> Traure el codi i descripció dels articles juntament amb
+el número de vegades que s'ha venut, el total d'unitats venudes i la mitjana
+d'unitats venudes per factura. Ordenar pel número total d'unitats venudes de
+forma descendent, i dins d'aquesta per codi d'article de forma ascendent.</p>
+<p><img alt="" src="../Ex_6_58.png" /></p>
+<p>Un total de <strong>399 files</strong></p>
+<p><strong>Ex_59</strong> Traure el codi i la descripció de les categories, amb la
+quantitat d'articles venuts de cada categoria, d'aquelles categories de les
+quals se n'han venut més de 100 unitats. Ordenar per aquest número de forma
+descendent.</p>
+<p><img alt="" src="../Ex_6_59.png" /></p>
+<p><strong>Ex_60</strong> Traure el codi i el nom dels clients que no tenen cap factura.</p>
+<p><img alt="" src="../Ex_6_60.png" /></p>
+<p><strong>Ex_61</strong> Traure el codi, descripció i total d'unitats venudes de tots
+els articles, fins i tot d'aquells que no s'ha venut res.</p>
+<p><strong>Nota</strong></p>
+<p>Per a deixar-lo més bonic, com que la suma de valors nuls no és 0 sinó nul,
+per a que ens aparegue el valor 0 podem utilitzar la funció COALESCE(<em>valor</em>
+,0), que si el valor és nul torna un 0.</p>
+<p><img alt="" src="../Ex_6_61.png" /></p>
+<p>Un total de <strong>812 files</strong></p>
+<p><strong>Ex_62</strong> Traure el nom de tots els pobles i el número de clients en
+cas que en tinguen. Ordena per número de clients de forma descendent.</p>
+<p><img alt="" src="../Ex_6_62.png" /></p>
+<p>Un total de <strong>1663 files</strong></p>
+<p><strong>Ex_63</strong> Traure el codi i la descripció de les categories, amb el
+número d'articles de cada categoria i el número total d'unitats venudes de
+cada categoria, d'aquelles categories de les quals tenim més de 15 articles, i
+ordenat per número d'articles de forma descendent. Aquesta sentència ja és
+prou complicada. Concretament haureu de tenir en compte que:</p>
+<ul>
+<li>Voldrem traure el número d'articles de cada categoria, però potser alguns articles no s'han venut, i per tant no apareixeran en la taula LINIA_FAC.</li>
+<li>I també tenim el problema que, com ens fa falta la taula LINIA_FAC, un article venut en més d'una factura apareixerà més d'una vegada. Si comptem de forma normal, el comptaríem més d'una vegada cada article. Per tant voldrem comptar els diferents articles de cada categoria.</li>
+</ul>
+<p><img alt="" src="../Ex_6_63.png" /></p>
+<p><strong>Ex_64</strong> Traure el número màxim de factures fetes a un client</p>
+<p><img alt="" src="../Ex_6_64.png" /></p>
+<p><strong>Ex_65</strong> Traure el l'import que suposa la factura més cara i l'import que
+suposa la més barata (sense considerar ni descomptes ni IVA)</p>
+<p><img alt="" src="../Ex_6_65.png" /></p>
+<p><strong>Ex_66</strong> Traure el número de factures més alt que s'ha venut per venedor en
+cada trimestre (no traurem qui és el venedor, que seria encara més complicat).
+Per a poder agrupar per trimestre, ens farà falta la funció
+<strong>TO_CHAR</strong><strong>(data,'Q')</strong> , que trau el número de trimestre. El pas previ és
+calcular el número de factures de cada venedor i en cada trimestre. Després,
+amb la informació anterior, voldrem calcular el màxim de cada trimestre.</p>
+<p><img alt="" src="../Ex_6_66.png" /></p>
+<p><strong>Ex_67</strong> Traure els articles més cars que la mitjana. Tragueu-los ordenats per
+la categoria, i després per codi d'article.</p>
+<p><img alt="" src="../Ex_6_67.png" /></p>
+<p>Un total de <strong>164 files</strong></p>
+<p><strong>Ex_68</strong> Modificar l'anterior per a traure els articles més cars que la
+mitjana de la seua categoria. Tragueu-los ordenats per la categoria</p>
+<p><img alt="" src="../Ex_6_68.png" /></p>
+<p>Un total de <strong>75 files</strong></p>
+<p>És un resultat molt similar a l'anterior, però observeu que ara no estan els
+productes de les files 5, 14, 15, ...</p>
+<p><strong>Ex_69</strong> Traure els pobles on tenim clients però no tenim venedors. Ha de ser
+per mig de subconsultes (en plural). Ordeneu per codi del poble.</p>
+<p><img alt="" src="../Ex_6_69.png" /></p>
+<p><strong>Ex_70</strong> Traure els pobles on tenim més venedors que clients. Traure el codi
+del poble, el nom i el número de venedors. Ordena per nom del poble.</p>
+<p><img alt="" src="../Ex_6_70.png" /></p>
+<p><strong>Ex_71</strong> Traure l'import de la factura més cara de cada trimestre. La
+informació prèvia és la factura amb la data i l'import. A partir d'ahí haurem
+de calcular el màxim de l'import per a cada trimestre (no caldrà traure quina
+factura és).</p>
+<p><img alt="" src="../Ex_6_71.png" /></p>
+<p><strong>Ex_72</strong> Traure el nom del venedor, el número de factures que ha venut i el
+percentatge que suposa sobre el total. Podria ser que en el moment de calcular
+el percentatge, el número resultant s'haja de convertir a numèric per a que
+dóne bé el resultat, ja que en fer una operació amb enters, el resultat serà
+enter. Aleshores hauríem d'obligar a que el número tinga decimals
+(<strong>::NUMERIC</strong>). I la funció d'arrodonir és <strong>ROUND</strong>. Ordeneu pel nom.</p>
+<p><img alt="" src="../Ex_6_72.png" /></p>
+<p><strong>Ex_73</strong> Traure tota la informació (amb l'import) de la factura més cara.
+Ha de ser per mig de subconsultes. Mireu que segurament hi haurà 2
+subconsultes. En la més interna calculem l'import de les factures. En l'altra
+calculem el màxim. I en la consulta principal, busquem la factura que
+coincideix amb aquest màxim.</p>
+<p><img alt="" src="../Ex_6_73.png" /></p>
+<p><strong>Ex_74 (voluntari)</strong> Obtenir el venedor que ha venut més unitats de cada
+categoria, sense considerar en la categoria el valor nul. Aquesta consulta la
+podríem considerar ja com molt avançada.</p>
+<p><img alt="" src="../Ex_6_74.png" /></p>
+<p><strong>Ex_75</strong> Traure el nom de tots els clients i venedors implicats en alguna
+venda del primer trimestre de 2015. Intentar traure en una segona columna el
+text <strong>Venedor</strong> per als venedors, i <strong>Client</strong> per als clients. Ordenat pel
+nom.</p>
+<p><img alt="" src="../Ex_6_75.png" /></p>
+<p><strong>Ex_76a</strong> Traure per mig de sentències d'operacions de conjunts els pobles on
+tenim algun venedor o algun client. No volem resultats repetits, i ho volem
+ordenat pel nom del poble.</p>
+<p><img alt="" src="../Ex_6_76a.png" /></p>
+<p>Un total de <strong>31 files</strong></p>
+<p><strong>Ex_76b</strong> Modificar l'anterior per a traure els pobles on tenim al mateix
+temps venedors i clients</p>
+<p><img alt="" src="../Ex_6_76b.png" /></p>
+<p><strong>Ex_76c</strong> Modificar l'anterior per a traure els pobles on tenim venedors però
+no tenim clients</p>
+<p><img alt="" src="../Ex_6_76c.png" /></p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-nd/2.5/">Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 2.5</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../24_consultes_doperacions_de_conjunts/" class="btn btn-neutral float-left" title="4. Consultes d'operacions de conjunts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../24_consultes_doperacions_de_conjunts/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

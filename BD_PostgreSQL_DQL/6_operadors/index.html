@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/6_operadors/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>4.1. Operadors - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "4.1. Operadors";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL/6_operadors.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/6_operadors/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >4. Operadors i Funcions de Postgres</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">4.1. Operadors</a>
+    <ul class="current">
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">SQL - POSTGRES</li>
+          <li class="breadcrumb-item">4. Operadors i Funcions de Postgres</li>
+      <li class="breadcrumb-item active">4.1. Operadors</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="41-operadors">4.1 Operadors</h1>
+<p>Els operadors que es gasten en el SQL de PostgreSQL són moltíssims. Cada tipus
+de dades té una sèrie d'operadors, i el mateix operador, aplicat a tipus
+distints pot fer coses diferents.</p>
+<p>Es poden veure tots els operadors en la taula <strong>PG_OPERATOR</strong> , on tindrem el
+nom de l'operador, els tipus de dades dels operands i del resultat i el
+procediment que implementa l'operador. Ací tenim una vista d'aquesta taula,
+encara que hi ha tantíssims operadors que mareja i tot (els que estan repetits
+és per a especificar l'actuació sobre operands de diferents tipus).</p>
+<p><img alt="" src="../T6_1_6_1.png" /></p>
+<p>Podríem fins i tot definir els nostres operadors, amb la sentència <strong>CREATE
+OPERATOR</strong> , on definiríem el tipus de l'operador de l'esquerra, el de la
+dreta, la funció que implementa l'operador, ... Ho intentarem en el tema
+següent, quan ja sapiguem crear funcions.</p>
+<p>No farem un repàs extens de tots els operadors. Només els més habituals, i
+algun d'un tipus de dades especial. Els tipus de dades els veurem en la
+tercera part d'aquest tema, quan les sentències de creació de taules.</p>
+<p>Per tant, fixeu-vos sobretot en els opradors <strong>aritmètics</strong> , de <strong>cadena</strong> i
+de <strong>comparació</strong>.</p>
+<p><strong class="azul">Operadors aritmètics</strong></p>
+<table>
+<thead>
+<tr>
+<th>+</th>
+<th>Suma</th>
+<th>-</th>
+<th>Resta</th>
+<th>*</th>
+<th>Multiplicació</th>
+<th>/</th>
+<th>Divisió</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^</td>
+<td>Exponenciació</td>
+<td>|/</td>
+<td>Arrel quadrada</td>
+<td>!</td>
+<td>Factorial</td>
+<td>%</td>
+<td>Mòdul (rest de la divisió)</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Exemples</u></strong>
+<div class="highlight"><pre><span></span><code>SELECT |/16;
+
+SELECT 5 ^ 3;
+
+SELECT 5!;
+</code></pre></div></p>
+<p><strong class="azul">Operadors de cadena</strong></p>
+<table>
+<thead>
+<tr>
+<th>||</th>
+<th>Concatenació</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Exemples</u></strong>
+<div class="highlight"><pre><span></span><code>SELECT &#39;Data i hora actual: &#39; || Now();
+</code></pre></div></p>
+<p><strong class="azul">Operadors de comparació</strong></p>
+<table>
+<thead>
+<tr>
+<th>=</th>
+<th>Igual</th>
+<th>&lt; &gt;</th>
+<th>Distint</th>
+<th>!=</th>
+<th>Distint</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&gt;</td>
+<td>Major</td>
+<td>&gt; =</td>
+<td>Major o igual</td>
+<td>&lt;</td>
+<td>Menor</td>
+<td>&lt; =</td>
+<td>Menor o igual</td>
+</tr>
+</tbody>
+</table>
+<p>S'utilitzen principalment en les condicions. Tornen sempre un valor booleà
+(true o false)</p>
+<p><strong class="azul">Operadors conversor de tipus</strong></p>
+<div class="highlight"><pre><span></span><code>::tipus
+</code></pre></div>
+<p>Servirà per a convertir alguna dada a algun tipus de dades.</p>
+<p>Així, per exemple,</p>
+<ul>
+<li><strong>'25-4-2012'::date</strong> estem convertint una cadena de text en una dada de tipus date.</li>
+<li><strong>'(0,0)'::point</strong> estem convertint el text a un punt.</li>
+</ul>
+<p>La forma utilitzada en els exemples anteriors és una forma molt habitual de
+posar les constants d'un determinat tipus: la posem com a cadena de caràcters
+(entre cometes) i després la convertim. L'única restricció serà que PostgreSQL
+"entenga" el que hi ha entre cometes per fer la conversió.</p>
+<p>Per veure que realment hi ha un canvi ens aprofitem de DBeaver que diu de quin
+tipus és un camp, si pot. Observeu que en el primer camp no hem posat més que
+una tira de caràcters, però en el segon intentem reconvertir aquesta mateixa
+tira de caràcters al tipus POINT. En el resultat s'observa com ha entés que el
+tipus de la dada és POINT.</p>
+<p><img alt="" src="../T6_1_6_2.png" /></p>
+<p>També ens serviria la funció <strong>point ('(0,0)')</strong></p>
+<p><strong><u>Operadors Geomètrics</u></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Operador</strong></th>
+<th><strong>Descripció</strong></th>
+<th><strong>Utilització</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;-&gt;</td>
+<td>Distància (han de ser del mateix tipus)</td>
+<td>point '(1,0)' &lt;-&gt; point '(3,0)'</td>
+</tr>
+<tr>
+<td>&lt;@</td>
+<td>Està contingut en?</td>
+<td>'(1,1)'::point @ '((0,0),(2,2))'::box</td>
+</tr>
+<tr>
+<td>@&gt;</td>
+<td>Conté?</td>
+<td>box '((0,0),(2,2))' @&gt; point '(1,1)'</td>
+</tr>
+</tbody>
+</table>
+<p>La llista d'operadors és molt més llarga, però ací només volem mostrar-ne
+algun a mode il·lustratiu.</p>
+<p>Podem fer comprovacions d'aquest tipus:
+<div class="highlight"><pre><span></span><code>SELECT &#39;(0,0)&#39;::point &lt;-&gt; &#39;(3,4)&#39;::point;
+</code></pre></div>
+que ens donarà la <strong>distància</strong> entre el punt <strong>(0,0)</strong> i el punt <strong>(3,4)</strong>.
+Aquesta distància ha de ser 5.
+<div class="highlight"><pre><span></span><code>SELECT &#39;(1,1)&#39;::point &lt;@ &#39;((0,0),2)&#39;::circle;
+</code></pre></div>
+que ens dirà si el <strong>punt</strong> <strong>(1,1)</strong> està <strong>dins</strong> del <strong>cercle amb origen
+(0,0) i radi 2</strong>. Com que sí que està tornarà el valor <strong>true</strong> (vertader).</p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 3.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../3_dades_dels_exemples_i_els_exercicis/" class="btn btn-neutral float-left" title="3 Dades dels exemples i els exercicis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../7_funcions/" class="btn btn-neutral float-right" title="4.2. Funcions">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../3_dades_dels_exemples_i_els_exercicis/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../7_funcions/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

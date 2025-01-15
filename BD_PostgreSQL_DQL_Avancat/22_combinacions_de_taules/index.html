@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>2. Combinacions de taules - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2. Combinacions de taules";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >4. Operadors i Funcions de Postgres</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../BD_PostgreSQL_DQL/6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../BD_PostgreSQL_DQL/7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2. Combinacions de taules</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#21-producte-cartesia">2.1 Producte cartesià</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#22-combinacio-interna">2.2 Combinació interna</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercicis">Exercicis</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#23-combinacio-externa">2.3 Combinació externa</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercicis_1">Exercicis</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">DQL Consultes avançades (part II)</li>
+      <li class="breadcrumb-item active">2. Combinacions de taules</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="2-combinacions-de-taules">2 Combinacions de taules</h1>
+<p>Vam veure en la sentència bàsica que en la clàusula FROM posàvem la taula <strong>o
+taules</strong> d'on s'agafarien les dades, però en tots els exemples posteriors
+només entrava en joc una única taula.</p>
+<p>És el moment d'estudiar les diferents possibilitats que tindrem quan posem més
+d'una taula.</p>
+<ul>
+<li>
+<p>La primera és el <strong>producte cartesià</strong> , que no utilitzarem mai, però hem de saber en què consisteix per poder evitar-lo.</p>
+</li>
+<li>
+<p>La segona serà la més utilitzada, la <strong>combinació</strong> (que de vegades anomenarem <strong>reunió</strong>).</p>
+</li>
+<li>
+<p>La tercera és una variant de l'anterior, la <strong>combinació externa</strong> , molt útil en alguns casos.</p>
+</li>
+</ul>
+<h2 id="21-producte-cartesia">2.1 Producte cartesià</h2>
+<p>La manera més senzilla és posar les taules separades per comes, però
+segurament el resultat no és el que esperàvem.</p>
+<p>Per exemple podem fer la següent sentència:</p>
+<pre><code>SELECT COMARQUES.nom_c, nom  
+  FROM COMARQUES,POBLACIONS;
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Observeu que hem posat el nom de la taula davant del camp <b>nom_c</b> , perquè
+les dues taules tenen un camp amb aquest nom. Aquesta operació s'anomena
+<b>qualificació</b>. Si no qualificàrem amb el nom de la taula davant, hi
+hauria ambigüitat, no sabria a quin camp es refereix, si el d'una taula o el
+de l'altra. Quan els noms dels camps són diferents i per tant no
+coincideixen en les dues taules, no cal qualificar el camp (com per exemple
+amb el camp <b>nom</b>)</p>
+</div>
+<p>Si executem la sentència, veurem que tindrem un nombre de files inesperadament
+alt, <strong>18.428 files !!!</strong> I si analitzem les files veurem el perquè: s'ha
+combinat cada comarca amb tots els pobles (siguen de la comarca o no).</p>
+<p><img alt="" src="../T6_II_2_1_1.png" /></p>
+<p>Aquesta operació s'anomena <strong>PRODUCTE CARTESIÀ</strong> (<em><strong>cross join</strong></em>), i es
+caracteritza en què cadascuna de les files d'una taula es combina amb totes
+les files de l'altra taula. El nombre de files resultant serà, doncs, el
+resultat de multiplicar el nombre de files d'una taula pel nombre de files de
+l'altra taula (en el nostre cas 34 x 542 = 18428).</p>
+<p>Rarament voldrem fer un producte cartesià. El més normal serà combinar una
+miqueta millor les taules. En el nostre exemple segurament ens interessarà
+molt més combinar <em>cada comarca amb les seues poblacions</em>.</p>
+<h2 id="22-combinacio-interna">2.2 Combinació interna</h2>
+<p><strong class="azul">Combinació de dues taules: Sintaxi</strong></p>
+<p>Normalment el producte cartesià no ens interessarà. Més bé voldrem combinar
+les taules de manera que dos camps, un camp de cada taula, coincidesquen. I el
+més habitual, si tenim la Base de Dades ben dissenyada, serà que els camps
+coincidents siguen una clau externa amb la clau principal a la qual apunta.
+Així, en l'exemple que utilitzàvem en el punt anterior, el que sí que ens serà
+útil és combinar cada comarca amb les seues poblacions. I justament tenim un
+camp en la taula POBLACIONS, <strong>nom_c</strong> , que és clau externa i apunta a la
+clau principal de <strong>COMARQUES</strong>.</p>
+<p>Aquesta operació l'anomenarem <strong>COMBINACIÓ INTERNA</strong> o senzillament
+<strong>COMBINACIÓ</strong> , i de vegades també es diu <strong>REUNIÓ</strong>. La seua sintaxi és la
+següent:</p>
+<pre><code>SELECT ...  
+  FROM taula1 INNER JOIN taula2 ON _condició_
+</code></pre>
+<p>La condició de la reunió consistirà en comparar un camp de cada taula.
+Els dos camps hauran de ser del mateix tipus, però no caldrà que tinguen el
+mateix nom. Les files que eixiran al resultat seran les que acompliran la
+condició.</p>
+<p>Encara que els operadors que es poden utilitzar són tots els de comparació, en
+la pràctica SEMPRE utilitzarem el d'igualar. Per tant podem refinar millor la
+combinació de 2 taules</p>
+<pre><code>SELECT ...  
+  FROM taula1 INNER JOIN taula2 ON taula1.camp1 = taula2.camp2
+</code></pre>
+<p>L'exemple de les comarques i les seues poblacions quedarà així</p>
+<pre><code>SELECT COMARQUES.nom_c, POBLACIONS.nom  
+  FROM COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c = POBLACIONS.nom_c
+</code></pre>
+<p>I aquest seria el resultat</p>
+<p><img alt="" src="../T6_II_2_2_1.png" /></p>
+<p>que com veiem torna 542 files (tantes com pobles)</p>
+<p>Alternativament, podríem posar la mateixa reunió d'una altra forma:</p>
+<pre><code>SELECT COMARQUES.nom_c, POBLACIONS.nom  
+  FROM COMARQUES,POBLACIONS  
+  WHERE COMARQUES.nom_c = POBLACIONS.nom_c
+</code></pre>
+<p>on estrictament el que estem fent és, del producte cartesià de les 2 taules,
+seleccionar únicament quan coincideix el <strong>nom_c</strong> (és a dir la comarca amb
+les seues poblacions), i per tant el resultat seria el mateix. Potser fóra més
+eficient utilitzar la primera manera, però de vegades la comoditat ens farà
+utilitzar la segona (sobretot quan s'hagen de combinar moltes taules).</p>
+<p>Les dues maneres de posar la conbinació de dues taules són les més habituals,
+i que funcionen en qualsevol Sistema Gestor de Bases de Dades.</p>
+<p>Tanmateix en PostgreSQL (i en altres SGBD com Oracle) hi ha més maneres de fer
+una combinació. No les veurem tan a fons perquè les anteriors ens basten i
+sobren:</p>
+<ul>
+<li>
+<p><strong>INNER JOIN amb USING</strong> : En el cas que els camps a reunir de les dues taules es diguen exactament igual, podem substituir la condició posada en <strong>ON</strong> per l'expressió <strong>USING</strong> , amb el camp de la reunió entre parèntesis</p>
+<p>SELECT COMARQUES.nom_c, POBLACIONS.nom<br />
+  FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)</p>
+</li>
+<li>
+<p><strong>NATURAL JOIN</strong> : També per al cas anterior, en què el camp en les dues taules es diu igual, podem fer-lo de forma encara més abreviada. Farà una reunió, igualant tots els camps que es diguen igual de les dues taules. Hem d'anar en compte, per si de cas hi ha algun altre camp en les dues taules que es diga igual.</p>
+<p>SELECT COMARQUES.nom_c, POBLACIONS.nom<br />
+  FROM COMARQUES NATURAL JOIN POBLACIONS</p>
+</li>
+</ul>
+<p><strong><u>Exemples</u></strong></p>
+<p>1) <strong>Traure el noms de les Poblacions i els noms dels Instituts que hi ha en elles.</strong></p>
+<p>Haurem de combinar les taules per la clau externa d'INSTITUTS a POBLACIONS (és
+a dir la que apunta de cod_m en INSTITUTS fins a la clau principal de
+COMARQUES, que és justament cod_m).</p>
+<pre><code>SELECT POBLACIONS.nom,INSTITUTS.nom  
+  FROM POBLACIONS INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m;
+</code></pre>
+<p>Utilitzant l'altra sintaxi, que posem la condició en el <strong>WHERE</strong> , ens
+quedaria:</p>
+<pre><code>SELECT POBLACIONS.nom,INSTITUTS.nom  
+  FROM POBLACIONS , INSTITUTS  
+  WHERE POBLACIONS.cod_m=INSTITUTS.cod_m;
+</code></pre>
+<p>Com en aquest cas el camp que hem d'igualar té el mateix nom en les dues
+taules, utilitzant la sintaxi del <strong>USING</strong> ens quedari més fàcil:</p>
+<pre><code>SELECT POBLACIONS.nom,INSTITUTS.nom  
+  FROM POBLACIONS INNER JOIN INSTITUTS USING(cod_m);
+</code></pre>
+<p>En canvi, hem d'anar amb molt de compte amb la sintaxi del <strong>NATURAL JOIN</strong> ,
+perquè itentarà igualar tots els camps que es diuen igual, i en aquest cas
+tenim dos camps coincidents: cod_m i nom. cod_m és el que volem, però nom ens
+fastidiarà, i evidentment no coincideix mai el nom de l'Institut i el de la
+població, i per tant no tornarà cap fila.</p>
+<pre><code>  SELECT POBLACIONS.nom,INSTITUTS.nom  
+    FROM POBLACIONS NATURAL JOIN INSTITUTS;
+</code></pre>
+<p>2) <strong>Traure els noms de les comarques i la província, amb el nombre de poblacions que té cada comarca.</strong></p>
+<p>Ens fan falta dues taules, COMARQUES per a poder traure el nom de la comarca i
+la província, i POBLACIONS per a poder comptar els pobles de cada comarca. Les
+haurem de combinar, agrupar per comarca (i província també, perquè volem que
+aparega el nom de la província) i comptar les poblacions. A l'hora de comptar
+podem comptar files (COUNT(*)), però potser siga millor comptar algun camp de
+la taula POBLACIONS, per exemple cod_m, que és la clau principal (recordem que
+els valors nuls no es comptaran, i cod_m per ser clau principal no pot ser
+nul).</p>
+<pre><code>SELECT COMARQUES.nom_c, provincia, COUNT(cod_m) AS Quants  
+  FROM COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c  
+  GROUP BY COMARQUES.nom_c, provincia;
+</code></pre>
+<p><strong class="azul">Tres o més taules</strong></p>
+<p>Si tenim més de 2 taules, haurem de procedir de la mateixa manera, ja que si
+deixem de combinar alguna taula, tindrem el producte cartesià. Com en la
+immensa majoria de casos, la reunió la farem per les claus externes que tenim
+definides. Únicament haurem de cuidar els parèntesis, per a marcar primer una
+condició de combinació i després l'altra. En un exemple ho veurem perfectament
+il·lustrat.</p>
+<p>Intentem traure el nom d'una comarca i la província, el nom dels seus pobles i
+el nom dels instituts d'aquestos pobles. Ens fan falta les taules COMARQUES
+(pera poder traure el nom de la comarca i província), POBLACIONS (per a traure
+el nom de la població) i INSTITUTS (per al nom d'aquestos). Ordenarem per nom
+de comarca, i dins d'aquest per població, per a una millor lectura del
+resultat</p>
+<pre><code>SELECT COMARQUES.nom_c, provincia, POBLACIONS.nom, INSTITUTS.nom  
+  FROM (COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c)  
+  INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+  ORDER BY 1,3;
+</code></pre>
+<p>Podríem posar la consulta de la forma alternativa, en què les condicions de
+reunió van en el WHERE. Òbviament aquestes condicions han d'anar unides per
+l'operador AND.</p>
+<pre><code>SELECT COMARQUES.nom_c, provincia, POBLACIONS.nom, INSTITUTS.nom  
+  FROM COMARQUES , POBLACIONS , INSTITUTS  
+  WHERE COMARQUES.nom_c=POBLACIONS.nom_c AND POBLACIONS.cod_m=INSTITUTS.cod_m  
+  ORDER BY 1,3;
+</code></pre>
+<p>Anem a plantejar un altre exemple. Es tracta de traure el nom i la província
+de les comarques, amb el número d'Instituts que hi ha en elles. En principi
+podríem pensar que les úniques taules que ens fan falta són COMARQUES (per a
+traure el nom i província de la comarca) i INSTITUTS (per a poder comptar els
+INSTITUTS). Si intentem fer aquesta consulta, <strong>NO</strong> obtindrem el resultat
+desitjat.</p>
+<div class="admonition warning">
+<p><strong class="rojo">SELECT nom_c, provincia, COUNT(codi)</strong><br />
+<strong class="rojo">FROM COMARQUES , INSTITUTS</strong><br />
+<strong class="rojo">GROUP BY nom_c, provincia</strong>  </p>
+</div>
+<p>Evidentment hi haurà un producte cartesià, ja que no hem combinat les taules,
+i ens eixirà per a cada comarca 375 instituts, que és el número total
+d'instituts, ja que s'ha combinat cada comarca amb tots els instituts.</p>
+<p>Però aleshores, per quin camp combinem? Si intentem unir les claus principals,
+<strong>nom_c</strong> amb <strong>codi</strong> (el codi d'Institut) no poden combinar bé per raons
+evidents. Ens hem de fixar en el disseny de la Base de Dades. Observarem que
+el problema és que no hi ha una clau externa entre INSTITUTS i COMARQUES. Però
+també ens dóna la solució: <strong>haurem de posar també la taula POBLACIONS</strong>
+encara que no vulguem visualitzar cap camp d'aquesta taula, ja que si estan
+relacionades les taules INSTITUTS i COMARQUES és a través d'aquesta taula. Per
+tant la consulta correcta serà:</p>
+<pre><code>SELECT COMARQUES.nom_c, provincia, COUNT(codi)  
+  FROM (COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c)  
+  INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+  GROUP BY COMARQUES.nom_c, provincia
+</code></pre>
+<p>La forma alternativa sembla més curta. Està clar que si són 3 taules, hauran
+d'haver 2 condicions de combinació unides per AND.</p>
+<pre><code>SELECT COMARQUES.nom_c, provincia, COUNT(codi)  
+  FROM COMARQUES , POBLACIONS , INSTITUTS  
+  WHERE COMARQUES.nom_c=POBLACIONS.nom_c AND POBLACIONS.cod_m=INSTITUTS.cod_m  
+  GROUP BY COMARQUES.nom_c, provincia;
+</code></pre>
+<p>De forma general, si tenim <em><strong>n</strong></em> taules en una consulta, ens faran falta
+<em><strong>n-1</strong></em> condicions de combinació unides per AND. Per exemple, si en una
+consulta entren 5 taules, per a no tenir cap producte cartesià ens faran falta
+4 condicions unides per AND.</p>
+<p><strong class="azul">Una taula més d'una vegada</strong></p>
+<p>Anem a plantejar un altre exemple interessant: traure el nom de les
+poblacions, amb el nom de la capital de comarca. Lamentablement amb les dades
+que tenim en la Base de Dades d'exemple no podrem provar-lo, així que anem a
+fer una suposició, una Base de Dades lleugerament modificada per a il·lustrar
+aquest exemple.</p>
+<p>Suposem que la nostra taula de POBLACIONS fóra lleugerament diferent, i que
+incorporara un camp nou amb el codi del municipi que és capital de comarca de
+la població:</p>
+<pre><code>POBLACIONS  
+(  
+cod_m numeric(5,0) CONSTRAINT cp_pobl PRIMARY KEY,  
+nom character varying(50) NOT NULL,  
+poblacio numeric(6,0),  
+extensio numeric(6,2),  
+altura numeric(4,0),  
+longitud character varying(50),  
+latitud character varying(50),  
+llengua character(1),  
+nom_c character varying(50),  
+***cod_capital numeric(5,0) CONSTRAINT ce_capital REFERENCES POBLACIONS(cod_m)  
+)
+</code></pre>
+<p>Per a poder traure al mateix temps el nom de les poblacions i el nom de la
+seua capital de comarca no tenim prou amb posar la taula POBLACIONS una
+vegada: només trauríem el nom de la població i ens quedaríem amb el codi de
+municipi de la capital. La solució serà reunir-la amb la taula POBLACIONS,
+posant-la una segona vegada per a tenir dues instàncies de la taula, una
+instància per al població normal i una altra per a la capital. Però com
+distingirem entre les dues instàncies? Doncs posant un nom a cadascuna. En
+general podem posar un nom en la sentència a qualsevol taula que aparega,
+posant aquest nom a continuació de la taula (opcionalment podríem posar AS
+enmig):</p>
+<pre><code>SELECT ...  
+  FROM taula T
+</code></pre>
+<p>En la resta de la consulta haurem d'utilitzar aquest nom. L'exemple quedarà de
+la següent manera:</p>
+<pre><code>SELECT P1.nom AS "Nom població" , P2.nom as "Nom capital"  
+  FROM POBLACIONS P1 INNER JOIN POBLACIONS P2 ON P1.cod_capital=P2.cod_m
+</code></pre>
+<p>o de la forma alternativa:</p>
+<pre><code>SELECT P1.nom AS "Nom població" , P2.nom as "Nom capital"  
+  FROM POBLACIONS P1, POBLACIONS P2  
+  WHERE P1.cod_capital=P2.cod_m
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Recordeu que aquestes instruccions no les podem provar, perquè no tenim el
+camp <b>cod_capital</b>.</p>
+</div>
+<p><strong class="azul">Clau externa formada per més d'un camp</strong></p>
+<p>Per últim anem a considerar el cas que la clau externa estiga formada per més
+d'un camp. Ho basarem en l'exemple dels <strong>Bancs</strong> , on la taula COMPTE CORRENT
+depèn en identificació de SUCURSAL. Com la clau principal de SUCURSAL està
+formada per 2 camps, la clau externa de COMPTE CORRENT, que apunta a la
+primera també estarà formada per 2 camps. Si volem traure el número de compte
+corrent, el nom de la sucursal d'on és el compte, i el saldo, ens faran falta
+les dues taules. Aquesta seria la manera de combinar-les:</p>
+<pre><code>SELECT C.n_ent , C.n_suc , n_cc , S.nom , C.saldo  
+  FROM SUCURSAL S INNER JOIN COMPTE_CORRENT C ON S.n_ent=C.n_ent AND
+  S.n_suc=C.n_suc
+</code></pre>
+<p>o de la forma alternativa:</p>
+<pre><code>SELECT C.n_ent , C.n_suc , n_cc , S.nom , C.saldo  
+  FROM SUCURSAL S, COMPTE_CORRENT C  
+  WHERE S.n_ent=C.n_ent AND S.n_suc=C.n_suc
+</code></pre>
+<p>En ambdós casos s'ha optat per posar nom a les taules (S i C respectivament)
+per comoditat, per a que no quedara tan llarga la consulta.</p>
+<h3 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h3>
+<p><strong>Ex_51</strong> Traure el nom dels clients amb el número de factura i la data
+(individuals, sense agrupar res) que té cada client. Trau el resultat ordenat
+per client, i dins d'aquest per data de la factura</p>
+<p><strong>Ex_52</strong> Traure el nom del soci, amb el codi i la descripció de cada
+article que ha demanat. Ordena per nom del soci i codi de l'article.</p>
+<p><strong>Ex_53</strong> Modificar l'anterior per a que no es repetesquen els resultats.</p>
+<p><strong>Ex_54</strong> Traure el nom dels clients amb la quantitat de factures que
+tenen, ordenades per aquest número de major a menor</p>
+<p><strong>Ex_55</strong> Traure el número de factura, data, codi de client, total de la
+factura (amb l'àlies IMPORT) i total de la factura aplicant descomptes
+d'article (amb àlies DESCOMPTE_1), com en la consulta <strong>Ex_33</strong> , però sense el
+límit de les 10 línies de factura. Ordena per número de factura.</p>
+<p><strong>Ex_56</strong> Modificar l'anterior per a aplicar també el descompte de la
+factura (amb l'àlies DESCOMPTE_2)</p>
+<p><strong>Ex_57</strong> Traure el codi i nom d'aquells venedors que supervisen algú
+(consten com a cap). Traure també el número de supervisats de cadascun
+d'aquestos supervisors.</p>
+<p><strong>Ex_58</strong> Traure el codi i descripció dels articles juntament amb el
+número de vegades que s'ha venut, el total d'unitats venudes i la mitjana
+d'unitats venudes per factura.</p>
+<p><strong>Ex_59</strong> Traure el codi i la descripció de les categories, amb la
+quantitat d'articles venuts de cada categoria, d'aquelles categories de les
+quals se n'han venut més de 100 unitats. Ordenar per aquest número de forma
+decendent.</p>
+<h2 id="23-combinacio-externa">2.3 Combinació externa</h2>
+<p>En ocasions ens interessarà fer una combinació diferent. Com quasi sempre ens
+basarem en un exemple. Quan en un exemple del punt anterior traíem els nom de
+les poblacions amb el nom dels instituts, no podien eixir les poblacions que
+no tenen instituts. Ara ens plantejarem la possibilitat de traure totes les
+poblacions, fins i tot aquelles que no tenen instituts, però d'aquelles que sí
+que en tinguen traure també el nom dels instituts. Aquesta operació s'anomena
+<strong>COMBINACIÓ EXTERNA</strong>.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<p>Tindrem dues possibilitats: traure totes les de l'esquerra o traure totes les
+de la dreta.</p>
+<p>Per a traure TOTES les files de la taula de l'esquerra, i aquelles que
+estiguen relacionades de la de la dreta:</p>
+<pre><code>SELECT ...  
+FROM taula1 LEFT [OUTER] JOIN taula2 ON _condició_
+</code></pre>
+<p>Així traurem TOTES les files de taula1, i aquelles que estiguen relacionades
+de taula2.</p>
+<p>Per a fer-ho al revès, és a dir, totes les files de la taula de la dreta i
+aquelles files que estiguen relacionades de l'esquerra:</p>
+<pre><code>SELECT ...  
+FROM taula1 RIGHT [OUTER] JOIN taula2 ON _condició_
+</code></pre>
+<p>D'aquesta manera traurem TOTES les files de taula2, i aquelles que estiguen
+relacionades de taula1.</p>
+<p>En el nostre exemple:</p>
+<pre><code>SELECT POBLACIONS.nom,INSTITUTS.nom  
+FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+ORDER BY 1
+</code></pre>
+<p>on hem ordenat pel nom de la població per a una millor lectura, i ens donarà
+el següent resultat:</p>
+<p><img alt="" src="../T6_II_2_3_1.png" /></p>
+<p>Podem observar que ens trau fins i tot els pobles que no tenen instituts, i
+que en el camp nom de l'institut tenen el valor NULL.</p>
+<p>Fem una variant interessant. Anem a traure els pobles amb el nombre
+d'instituts que té cadascun. Ens farà falta la taula POBLACIONS per a poder
+traure el nom de la població i la taula INSTITUTS per a traure el nombre
+d'instituts, i agruparem pel nom de la població. Les dues taules les hem de
+combinar (per evitar el producte cartesià). Si fem una combinació normal
+(interna), <em>els que no tenen instituts no entren</em>. Però si fem una
+<strong>combinació externa</strong> <em><strong>sí que entraran</strong></em>.</p>
+<p>Només ens queda comptar per un camp que en el cas dels que no tenen instituts
+tinga el valor nul, és a dir, per un camp de la taula INSTITUTS, i el que
+millor se'ns acopla és algun que forma part de la clau principal, ja que com
+no pot agafar un valor nul en la taula INSTITUTS, l'única possibilitat que
+agafe el valor nul en la combinació externa és que la població no tinga
+institut, i aleshores en el moment de comptar ens donarà el valor 0.</p>
+<p>Aquesta serà la consulta, on hem tornat a ordenar pel nom de la població</p>
+<pre><code>SELECT POBLACIONS.nom,COUNT(INSTITUTS.codi)  
+FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+GROUP BY POBLACIONS.nom  
+ORDER BY 1
+</code></pre>
+<p>I aquest serà el resultat</p>
+<p><img alt="" src="../T6_II_2_3_2.png" /></p>
+<p>Una altra variant també interessant és fer una consulta similar per a traure
+els pobles que no tenen institut. Haurem de fer una combinació externa, i en
+la condició posar justament que un dels camps de la taula INSTITUTS siga nul
+(per exemple, la clau principal):</p>
+<p>Aquesta serà la consulta, on hem tornat a ordenar pel nom de la població:</p>
+<pre><code>SELECT POBLACIONS.nom  
+FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+WHERE INSTITUTS.codi IS NULL  
+ORDER BY 1
+</code></pre>
+<p>I aquest serà el resultat:</p>
+<p><img alt="" src="../T6_II_2_3_3.png" /></p>
+<p><strong><u>Exemples</u></strong></p>
+<p>1) <strong>Traure totes les comarques amb el número de pobles que té cadascuna, fins i tot aquelles comarques que no tinguen cap poble.</strong></p>
+<p>Aquest exemple és poc il·lustratiu, perquè no tenim en principi cap camarca
+que no tinga pobles. De tota manera, la manera seria fent un LEFT JOIN entre
+COMARQUES i POBLACIONS, per a després agrupar per comarca i comptar les
+poblacions. Observeu com també podem utilitzar la sintaxi del <strong>USING</strong> en el
+LEFT JOIN.</p>
+<pre><code>SELECT COMARQUES.nom_c, COUNT(cod_m)  
+FROM COMARQUES LEFT JOIN POBLACIONS USING(nom_c)  
+GROUP BY COMARQUES.nom_c  
+ORDER BY 1;
+</code></pre>
+<h3 id="exercicis_1"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h3>
+<p><strong>Ex_60</strong> Traure el codi i el nom dels clients que no tenen cap factura.</p>
+<p><strong>Ex_61</strong> Traure el codi, descripció i total d'unitats venudes de tots
+els articles, fins i tot d'aquells que no s'ha venut res.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Per a deixar-lo més bonic, com que la suma de valors nuls no és 0 sinó nul,
+per a que ens aparegue el valor 0 podem utilitzar la funció COALESCE(<em>valor</em>
+,0), que si el valor és nul torna un 0.</p>
+</div>
+<p><strong>Ex_62</strong> Traure el nom de tots els pobles i el número de clients en
+cas de que en tinguen. Ordena per número de clients de forma descendent.</p>
+<p><strong>Ex_63</strong> Traure el codi i la descripció de les categories, amb el
+número d'articles de cada categoria i el número total d'unitats venudes de
+cada categoria, d'aquelles categories de les quals tenim més de 15 articles, i
+ordenat per número d'articles de forma descendent. Aquesta sentència ja és
+prou complicada. Concretament haureu de tenir en compte que:</p>
+<ul>
+<li>Voldrem traure el número d'articles de cada categoria, però potser alguns articles no s'han venut, i per tant no apareixeran en la taula LINIA_FAC.</li>
+<li>I també tenim el problema que, com ens fa falta la taula LINIA_FAC, un article venut en més d'una factura apareixerà més d'una vegada. Si comptem de forma normal, el comptaríem més d'una vegada cada article. Per tant voldrem comptar els diferents articles de cada categoria.</li>
+</ul>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-nd/2.5/">Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 2.5</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../21_introducci/" class="btn btn-neutral float-left" title="1. Introducció"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../23_subconsultes/" class="btn btn-neutral float-right" title="3. Subconsultes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../21_introducci/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../23_subconsultes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

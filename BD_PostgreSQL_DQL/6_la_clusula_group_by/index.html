@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/6_la_clusula_group_by/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>6. La clàusula GROUP BY - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "6. La cl\u00e0usula GROUP BY";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL/6_la_clusula_group_by.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/6_la_clusula_group_by/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >4. Operadors i Funcions de Postgres</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">6. La clàusula GROUP BY</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#exercicis">Exercicis</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">DQL Consultes (part I)</li>
+      <li class="breadcrumb-item active">6. La clàusula GROUP BY</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="6-la-clausula-group-by">6. La clàusula GROUP BY</h1>
+<p>Agrupa totes les files amb valors iguals d'una o d'unes columnes</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>SELECT &lt;columnes&gt;  
+  FROM &lt;taules&gt;  
+  GROUP BY &lt;columnes&gt;
+</code></pre>
+<p>Per cada fila amb valors iguals de les columnes de la clàusula <strong>GROUP BY</strong> ,
+en trau només una, és a dir, les agrupa.</p>
+<p>Les <em><strong>funcions d'agregat</strong></em> agafen tot el seu sentit i potència combinades
+amb el <strong>GROUP BY</strong> : tornaran un valor per cada grup. Així, per exemple,
+aquesta sentència traurà quantes poblacions hi ha en cada comarca:</p>
+<pre><code>SELECT COUNT(*)  
+  FROM POBLACIONS  
+  GROUP BY nom_c
+</code></pre>
+<blockquote>
+<p>Si volem excloure files per a que no entren en les agrupacions, ho farem per
+mig de la clàusula <strong>WHERE</strong>. En aquest exemple ens aprofitem del codi de
+municipi, que en el cas dels municipis de la província de Castelló és 12000
+i pico.</p>
+</blockquote>
+<pre><code>SELECT COUNT(*)  
+  FROM POBLACIONS  
+  WHERE cod_m &gt;= 12000 and cod_m &lt; 13000  
+  GROUP BY nom_c
+</code></pre>
+<p>Quan tenim agrupacions de files, bé perquè utilitzem la clàusula GROUP BY, bé
+perquè entre les columnes que es trien en el SELECT hi ha alguna funció
+d'agregat, o les dues coses a l'hora, es poden cometre errors amb una relativa
+facilitat. Quan hi ha una agrupació <strong>totes les columnes que seleccionem amb
+el SELECT hauran d'estar en el GROUP BY, o bé estar dins d'una funció
+d'agregat</strong>. En cas contrari ens donarà error. Per exemple, aquesta consulta
+funciona bé, i de fet és millor consulta que les d'abans, ja que ens diu la
+comarca i el numero de pobles que té cadascuna:</p>
+<pre><code>SELECT nom_c, COUNT(*)  
+  FROM POBLACIONS  
+  GROUP BY nom_c
+</code></pre>
+<p>Però aquesta no:</p>
+<pre><code>SELECT nom_c, COUNT(*), cod_m  
+  FROM POBLACIONS  
+  GROUP BY nom_c
+</code></pre>
+<p>És sintàcticament incorrecta, i a banda no té sentit: si agrupem tots els
+pobles de la mateixa comarca ¿com hem de poder traure després el codi del
+municipi de cada poble?.</p>
+<p>Com és relativament fàcil cometre aquest error, haurem d'identificar aquest
+error, per a poder solucionar-lo.</p>
+<p>Per exemple, aquesta consulta ens dóna la població més alta de cada comarca:</p>
+<pre><code>SELECT nom_c, MAX(altura)  
+  FROM POBLACIONS  
+  GROUP BY nom_c
+</code></pre>
+<p>Però si intentàrem traure també el nom de la població més alta de cada
+comarca:</p>
+<pre><code>SELECT nom_c, MAX(altura), nom  
+  FROM POBLACIONS  
+  GROUP BY nom_c
+</code></pre>
+<p>ens donaria el següent error:</p>
+<p><img alt="" src="../T6_1_13_1.png" /></p>
+<p>Hem d'aprendre a identificar aquest error, i solucionar-lo. En aquest cas el
+solucionarem llevant el camp <strong>Nom</strong>. La sentència per a poder traure el nom
+de la població més alta de cada comarca és complicada, i encara no podem fer-
+la.</p>
+<p><strong><u>Exemples</u></strong></p>
+<p>1) Comptar el nombre d'instituts de cada població.</p>
+<pre><code>SELECT cod_m, COUNT(*)  
+  FROM INSTITUTS  
+  GROUP BY cod_m
+</code></pre>
+<p>2) Comptar el nombre de comarques de cada província.</p>
+<pre><code>SELECT provincia, COUNT(*)  
+  FROM COMARQUES  
+  GROUP BY provincia
+</code></pre>
+<p>3) Calcular l'altura màxima, mínima i l'altura mitjana de cada comarca.</p>
+<pre><code>SELECT nom_c, MAX(altura), MIN(altura), AVG(altura)  
+  FROM POBLACIONS  
+  GROUP BY nom_c
+</code></pre>
+<p>4) Comptar el nombre d'instituts de cada població i cada codi postal.</p>
+<pre><code>SELECT cod_m, codpostal, COUNT(*)  
+  FROM INSTITUTS  
+  GROUP BY cod_m, codpostal
+</code></pre>
+<h2 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h2>
+<p><strong>Ex_21</strong> Comptar el número de pobles de cada província (és suficient traure el
+codi de la província i el número de pobles).</p>
+<p><strong>Ex_22</strong> Comptar el nombre de clients en cada poble i codi postal.</p>
+<p><strong>Ex_23</strong> Comptar el número de factures de cada venedor a cada client.</p>
+<p><strong>Ex_24</strong> Comptar el número de factures de cada trimestre. Per a poder traure
+el trimestre i agrupar per ell (ens val el número de trimestre, que va del 1
+al 4), podem utilitzar la funció <strong>TO_CHAR(data,'Q')</strong>.</p>
+<p><strong>Ex_25</strong> Calcular quantes vegades s'ha venut un article, la suma d'unitats
+venudes, la quantitat màxima i la quantitat mínima.</p>
+<p><strong>Ex_26</strong> Comptar el número d'articles de cada categoria i el preu mitjà.</p>
+<p><strong>Ex_27</strong> Calcular el total de cada factura, sense aplicar descomptes ni IVA.
+Només ens farà falta la taula <strong>LINIES_FAC</strong> , i consistirà en agrupar per
+cada <strong>num_f</strong> per a calcular la suma del <strong>preu</strong> multiplicat per la
+<strong>quantitat</strong>.</p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 3.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../5_funcions_dagregat/" class="btn btn-neutral float-left" title="5. Funcions d'agregat"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../7_la_clusula_having/" class="btn btn-neutral float-right" title="7. La clàusula HAVING">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../5_funcions_dagregat/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../7_la_clusula_having/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

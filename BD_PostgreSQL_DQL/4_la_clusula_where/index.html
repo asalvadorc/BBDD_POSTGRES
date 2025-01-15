@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/4_la_clusula_where/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>4. La clàusula WHERE - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "4. La cl\u00e0usula WHERE";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL/4_la_clusula_where.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/4_la_clusula_where/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >4. Operadors i Funcions de Postgres</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">4. La clàusula WHERE</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#exercicis">Exercicis</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">DQL Consultes (part I)</li>
+      <li class="breadcrumb-item active">4. La clàusula WHERE</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="4-la-clausula-where">4. La clàusula WHERE</h1>
+<p>Ens servirà per establir filtres. Només eixiran les files que satisfacen la
+condició del filtre.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>SELECT &lt;columnes&gt;  
+  FROM &lt;taules&gt;  
+  WHERE &lt;condició&gt;;
+</code></pre>
+<p>La condició podrà ser una o més d'una, unides en aquest cas pels operadors
+lògics <strong>AND</strong> , <strong>OR</strong> i <strong>NOT</strong>. Cada condició serà una comparació entre
+expressions, on poden entrar columnes, constants, paràmetres, funcions vàlides
+de PostgreSQL, ... unides per operadors aritmètics. Els operadors que es poden
+utilitzar per a fer les comparacions són:</p>
+<p><img alt="" src="../where.png" /></p>
+<!--
+  * **<  <=    =   >=   >  <>  (!=)** (distint)
+
+  * **BETWEEN** _valor1_**AND** _valor2_ (els valors compresos entre valor1 i valor2)
+
+  * **IN** (_llista_de_valors_) si el valor amb què es compara està en la llista de valors (entre parèntesis i valors separats per comes)
+
+  * També podem utilitzar **LIKE** en la condició. En els exemples 4, 7 i 8 es veu la seua utilització. L'operador LIKE s'utilitza junt amb els caràcters "**comodí** ": 
+  * **%** (equival a 0 o més caràcters, els que siga)
+  * **_** (1 i només un caràcter, això sí, el que siga).
+
+  * **IS [NOT]** és un operador especial per a comparar amb el valor nul (**NULL**).
+-->
+<p>Recordem per una altra banda com s'escriuen les constants:</p>
+<ul>
+<li>
+<p>les constants <strong>numèriques</strong> van tal qual, sense cometes ni res (amb el <strong>punt</strong> decimal, i no coma decimal)</p>
+</li>
+<li>
+<p>les constants <strong>alfanumèriques</strong> (de text) van entre cometes simples</p>
+</li>
+<li>
+<p>les constants de data van entre cometes simples, i PostgreSQL ja farà la conversió</p>
+</li>
+<li>
+<p>per últim el valur nul s'escriu <strong>NULL</strong></p>
+</li>
+</ul>
+<p><strong><u>Exemples</u></strong></p>
+<p>1) Traure les comarques de la província de Castelló</p>
+<pre><code>SELECT *  
+  FROM COMARQUES  
+  WHERE provincia = 'Castelló';
+</code></pre>
+<p>2) Traure totes les poblacions que tenen de llengua el valencià.</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE llengua = 'V';
+</code></pre>
+<p>3) Traure les poblacions de la comarca de la Plana Alta de més de 300 metres d'altura</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE nom_c = 'Plana Alta' AND altura &gt; 300;
+</code></pre>
+<p>4) Traure els instituts dels codis postals 12001, 12002 o 12003)</p>
+<pre><code>SELECT *  
+  FROM INSTITUTS  
+  WHERE codpostal=12001 OR codpostal=12002 OR codpostal=12003;
+
+
+SELECT *  
+  FROM INSTITUTS  
+  WHERE codpostal &gt;= 12001 AND codpostal &lt;= 12003;
+
+
+SELECT *  
+  FROM INSTITUTS  
+  WHERE codpostal BETWEEN 12001 AND 12003;
+
+
+SELECT *  
+  FROM INSTITUTS  
+  WHERE codpostal IN (12001,12002,12003);
+</code></pre>
+<p>5) Traure els pobles de la comarca <strong>Plana d'Utiel</strong> (Tenim la dificultat de la cometa simple, que ens serveix sempre per a delimitar una constant alfanumèrica) La manera de solucionar-ho és posar-la dues vegades</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE nom_c = 'Plana d''Utiel';
+</code></pre>
+<p>6) Traure nom i província dels pobles que comencen per <strong>G</strong> (el primer cognom)</p>
+<pre><code>SELECT nom, nom_c  
+  FROM POBLACIONS  
+  WHERE nom LIKE 'G%';
+</code></pre>
+<p>7) Traure les poblacions que estan a 40º 1' (i els segons que siguen) de latitud nord</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE latitud LIKE '40º01____N';
+</code></pre>
+<p>Hem posat els 40º i 1 minut. A continuació hem posat exactament 4 caràcters,
+els que siga. Hem posat 4, que serien la cometa que assenyala els minuts, les
+2 xifres dels segons i la doble cometa que assenyala els segons. Observeu com
+la cometa simple és problemàtica, ja que és la que serveix per a delimitar la
+constant alfanumèrica. Si volem posar-la, en la constant l'haurem de doblar
+(l'haurem de posar 2 vegades seguides)</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE latitud LIKE '40º01''__"N';
+</code></pre>
+<p>8) Traure totes les poblacions, el nom de les quals només consta d'una paraula (no tindran espais en blanc).</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE nom NOT LIKE '% %';
+</code></pre>
+<p>9) Traure els instituts que no tenen introduït el numero del carrer.</p>
+<pre><code>SELECT *  
+  FROM INSTITUTS  
+  WHERE numero IS NULL;
+</code></pre>
+<h2 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h2>
+<p><strong>Ex_7</strong> Traure els <strong>clients</strong> de la <strong>ciutat</strong> amb codi <strong>12309</strong>.</p>
+<p><strong>Ex_8</strong> Traure totes les <strong>factures</strong> del mes de <strong>març</strong> de <strong>2015</strong>.</p>
+<p><strong>Ex_9</strong> Traure tots els articles de la <strong>categoria</strong> <strong>BjcOlimpia</strong> amb un
+<strong>stock</strong> entre<strong>2</strong> i <strong>7</strong> unitats.</p>
+<p><strong>Ex_10</strong> Traure tots els <strong>clients</strong> que <strong>no</strong> tenen introduït el <strong>codi
+postal</strong>.<strong><br />
+</strong></p>
+<p><strong>Ex_11</strong> Traure tots els <strong>articles</strong> amb el <strong>stock</strong> introduït però que
+<strong>no</strong> tenen introduït el <strong>stock mínim</strong>.</p>
+<p><strong>Ex_12</strong> Traure tots els <strong>clients</strong> , el<strong>primer cognom</strong> dels quals és
+<strong>VILLALONGA</strong>.</p>
+<p><strong>Ex_13.a</strong> Modificar l'anterior per a traure tots els que són <strong>VILLALONGA</strong>
+de <strong>primer</strong> o de <strong>segon</strong> cognom.<br />
+<strong>Ex_13.b</strong> Modificar l'anterior per a traure tots els que <strong>no</strong> són
+<strong>VILLALONGA</strong> ni de primer ni de segon cognom.</p>
+<p><strong>Ex_14</strong> Traure els <strong>articles</strong> "<strong>Pulsador</strong> " (la descripció conté aquesta
+paraula), el <strong>preu</strong> dels quals oscila entre<strong>2 i 4 €</strong> i dels quals tenim un
+<strong>stock</strong> estrictament <strong>major</strong> que el <strong>stock mínim</strong>.<strong><br />
+</strong></p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 3.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../3_lies_en_les_columnes/" class="btn btn-neutral float-left" title="3. Àlies en les columnes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../5_funcions_dagregat/" class="btn btn-neutral float-right" title="5. Funcions d'agregat">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../3_lies_en_les_columnes/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../5_funcions_dagregat/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

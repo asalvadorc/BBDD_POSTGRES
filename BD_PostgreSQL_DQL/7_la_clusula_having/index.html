@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/7_la_clusula_having/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>7. La clàusula HAVING - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "7. La cl\u00e0usula HAVING";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL/7_la_clusula_having.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/7_la_clusula_having/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >4. Operadors i Funcions de Postgres</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">7. La clàusula HAVING</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#exercicis">Exercicis</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">DQL Consultes (part I)</li>
+      <li class="breadcrumb-item active">7. La clàusula HAVING</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="7-la-clausula-having">7. La clàusula HAVING</h1>
+<p>Aquesta clàusula acompanya normalment a la de <strong>GROUP BY</strong> , i servirà pera
+poder triar alguns grups que acomplesquen una determinada condició.</p>
+<p>Pot anar sense el GROUP BY, però aleshores el seu funcionament és com el
+WHERE, i per tant no val la pena. És a dir, en la pràctica sempre que trobem
+un HAVING hi haurà també el GROUP BY i servirà per seleccionar alguns grups,
+els que acomplesquen la condició del HAVING.</p>
+<p>També podríem dir que el HAVING és al GROUP BY, el que el WHERE és al SELECT</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>SELECT &lt;columnes&gt;  
+  FROM &lt;taules&gt;  
+  [GROUP BY &lt;columnes&gt;]  
+  HAVING &lt;condició&gt;
+</code></pre>
+<p>Únicament comentarem el cas en què acompanya al GROUP BY. I com hem dit, el
+que fa és filtrar els grups: dels grups resultants del GROUP BY, només eixiran
+els que acomplesquen la condició.</p>
+<p>Aquesta condició contindrà alguna funció d'agregat o contindrà columnes
+incloses en el GROUP BY. Fixeu-vos que és lògic, ja que serveix per a triar
+grups una vegada fets, i aleshores ja no es podrà anar a un element del grup.</p>
+<p>Per exemple, aquesta sentència servirà per traure les comarques on hi ha més
+de 20 pobles, i el número que hi ha:</p>
+<pre><code>SELECT nom_c, COUNT(*)  
+  FROM POBLACIONS  
+  GROUP BY nom_c  
+  HAVING COUNT(*) &gt; 20;
+</code></pre>
+<p><strong><u>Exemples</u></strong></p>
+<p>1) Traure aquelles poblacions que tenen més d'un de Centres Integrats de Formació Professional. La manera de saber que és un Centre Integrat és perquè el seu nom comença per CIPFP. De moment només traurem el codi de la població, i així només ens fa falta la taula INSTITUTS. Més avant aprendrem a agafar les dades de més d'una taula, i aleshores traurem també el nom de la població</p>
+<pre><code>SELECT cod_m, COUNT(*)  
+  FROM INSTITUTS  
+  WHERE nom LIKE 'CIPFP%'  
+  GROUP BY cod_m  
+  HAVING COUNT(*) &gt; 1
+</code></pre>
+<blockquote>
+<p>El que fem en aquesta sentència és, de la taula INSTITUTS seleccionar
+únicament els Centres Integrats (utilitzant l'operador LIKE per a que
+comencen per CIPFP)i i després agrupar pel codi de municipi. Una vegada fets
+els grups, eliminarem els grups que no acompleixen la condició de HAVING, és
+a dir, els que tenen 0 o 1 Centre Integrat. I d'aquestos grups seleccionats
+traurem el codi del municipi i el número de Centres Integrats (que sempre
+serà igual o major que 2).</p>
+</blockquote>
+<p>2) Calcular el número d'habitants màxim, el mínim i el número d'habitants mitjà de les poblacions de les comarques amb més de 20 pobles.</p>
+<pre><code>SELECT nom_c , COUNT(cod_m) AS "Número de pobles" , Max(poblacio) AS Màxim , Min(poblacio) AS Mínim , Avg(poblacio) AS Mitjana  
+  FROM POBLACIONS  
+  GROUP BY nom_c  20;
+</code></pre>
+<p>3) Traure l'altura mitjana, total de població i població mitjana, d'aquelles comarques que tenen una altura mitjana superior a 800 metres.</p>
+<pre><code>SELECT nom_c , AVG(altura) AS "Altura mitjana" , SUM(poblacio) AS "Total població" , Avg(poblacio) AS "Població mitjana"  
+  FROM POBLACIONS  
+  GROUP BY nom_c  
+  HAVING AVG(altura) &gt; 800;
+</code></pre>
+<h2 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h2>
+<p><strong>Ex_28</strong> Calcular la mitjana de quantitats demanades d'aquells articles que
+s'han demanat més de dues vegades. Observeu que la taula que ens fa falta és
+LINIA_FAC, i que la condició (en el HAVING) és sobre el número de vegades que
+entra l'article en una linia de factura, però el resultat que s'ha de mostrar
+és la mitjana de la quantitat.</p>
+<p><strong>Ex_29</strong> Traure els pobles que tenen entre 3 i 7 clients. Traure només el codi
+del poble i aquest número</p>
+<p><strong>Ex_30</strong> Traure les categories que tenen més d'un article "car" (de més de
+100 €). Observeu que també ens eixirà la categoria NULL, és a dir, apareixerà
+com una categoria aquells articles que no estan catalogats.</p>
+<p><strong>Ex_31</strong> Traure els clients que tenen més d'una factura, amb el número de
+factures.</p>
+<p><strong>Ex_32</strong> Modificar l'anterior per a traure els clients que tenen més
+d'una factura en el primer trimestre.</p>
+<p><strong>Ex_33</strong> Calcular el total de cada factura d'aquelles factures que
+tenen 10 o més línies de factura, sense aplicar descomptes ni IVA (com la
+consulta <strong>Ex_26</strong>), i també aplicant el descompte que consta en la línia de
+factura (no el descompte de tota la factura). Tindrem el problema que el valor
+NULL és especial, i en operar amb qualsevol altre valor donarà NULL. En aquest
+cas clarament l'hem de considerar com un descompte 0. Podeu utilitzar una
+funció que substitueix els 
+HAVING COUNT(cod_m) &gt; valors nuls trobats en el primer paràmetre, pel
+segon paràmetre d'aquesta manera: <strong>COALESCE(dte,0)</strong></p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 3.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../6_la_clusula_group_by/" class="btn btn-neutral float-left" title="6. La clàusula GROUP BY"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../8_la_clusula_order_by/" class="btn btn-neutral float-right" title="8. La clàusula ORDER BY">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../6_la_clusula_group_by/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../8_la_clusula_order_by/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

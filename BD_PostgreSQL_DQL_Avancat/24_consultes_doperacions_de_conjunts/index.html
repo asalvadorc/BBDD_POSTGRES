@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>4. Consultes d'operacions de conjunts - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "4. Consultes d\u0027operacions de conjunts";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >4. Operadors i Funcions de Postgres</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../BD_PostgreSQL_DQL/6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../BD_PostgreSQL_DQL/7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">4. Consultes d'operacions de conjunts</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#41-unio">4.1 Unió</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#42-interseccio">4.2 Intersecció</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#43-diferencia">4.3 Diferència</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercicis">Exercicis</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">DQL Consultes avançades (part II)</li>
+      <li class="breadcrumb-item active">4. Consultes d'operacions de conjunts</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="4-consultes-doperacions-de-conjunts">4 Consultes d'operacions de conjunts</h1>
+<p>Agruparem en aquest apartat les consultes que tracten conjunts de files per a
+fer operacions d'algebra de conjunts: <strong>unió</strong> , <strong>intersecció</strong> i
+<strong>diferència</strong> de conjunts</p>
+<p>Totes aquestes consultes ajunten els resultats de dues o més consultes.</p>
+<h2 id="41-unio">4.1 Unió</h2>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>[TABLE] consulta1  
+UNION [ALL]  
+[TABLE] consulta2 ...
+</code></pre>
+<p>Cadascuna de les consultes pot ser una taula (posant la paraula <strong>TABLE</strong>
+davant) o el nom d'una consulta ja guardada, encara que el més habitual serà
+posar directament la <strong>sentència SQL</strong>.</p>
+<p>Els requisits són que les dues (o més) consultes tornen el mateix nombre de
+camps, i que siguen sinó del mateix tipus, sí de tipus compatibles</p>
+<p>Igual que en la unió de conjunts, el resultat seran totes les files de les
+dues (o més) consultes individuals, però sense repetir files, és a dir, si de
+les dues consultes s'obtenen files iguals, aquestes només eixiran una vegada.
+L'anterior es pot evitar si posem el predicat ALL, i aleshores sí que eixiran
+les files repetides.</p>
+<p>Els noms dels camps vindran donats per la primera consulta.</p>
+<p>Si volem ordenar per algun camp, ho haurem de posar al final de l'última
+consulta, però referint-se en tot cas als camps de la primera consulta (ho
+podem evitar posant el número d'ordre en el ORDER BY)</p>
+<p><strong><u>Exemples</u></strong></p>
+<p>1) Volem veure en un únic resultat tant el nom de les comarques com el nom de les poblacions, sempre amb el nom de la província al costat</p>
+<pre><code>SELECT nom_c, provincia  
+  FROM COMARQUES  
+UNION  
+SELECT nom, provincia  
+  FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
+ORDER BY nom_c;
+</code></pre>
+<p>Com a curiositat, eixiran 575 files, però si posàrem UNION ALL ens eixirien
+576. Això és perquè la comarca de la ciutat de València es diu València i està
+a la província de València. Per tant és una fila que apareixerà tant en la
+primera com en la segona consulta. Si fem UNION no es repetirà, però si fem
+UNION ALL sí que es repetirà.</p>
+<h2 id="42-interseccio">4.2 Intersecció</h2>
+<p>És identica a la unió, però posant la paraula <strong>INTERSECT</strong> , i servirà per a
+traure únicament les files que estan en les dues consultes.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>[TABLE] consulta1  
+INTERSECT [ALL]  
+[TABLE] consulta2 ...
+</code></pre>
+<p>Igual que abans, cadascuna de les consultes pot ser una taula (posant la
+paraula <strong>TABLE</strong> davant), i tenim el requisit que les dues (o més) consultes
+tornen el mateix nombre de camps, i de tipus compatibles.</p>
+<p>En principi no eixiran files repetides, a no ser que posem <strong>ALL</strong></p>
+<p><strong>Exemple</strong></p>
+<p>1) Com que en l'exemple de la unió havíem vist que la fila València València eixia en les 2 consultes, anem a comprovar que apareix en la intersecció:</p>
+<pre><code>SELECT nom_c, provincia  
+  FROM COMARQUES  
+INTERSECT  
+SELECT nom, provincia  
+  FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
+ORDER BY nom_c;
+</code></pre>
+<h2 id="43-diferencia">4.3 Diferència</h2>
+<p>És identica a les anteriors, però posant la paraula <strong>EXCEPT</strong> , i servirà per
+a traure les files que estan en la primera consulta però que no estan en la
+segona.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>[TABLE] consulta1  
+EXCEPT [ALL]  
+[TABLE] consulta2 ...
+</code></pre>
+<p>Igual que abans, cadascuna de les consultes pot ser una taula (posant la
+paraula <strong>TABLE</strong> davant), i tenim el requisit que les dues (o més) consultes
+tornen el mateix nombre de camps, i de tipus compatibles.</p>
+<p>En principi no eixiran files repetides, a no ser que posem <strong>ALL</strong></p>
+<p><strong><u>Exemple</u></strong></p>
+<p>1) Aprofitem el mateix exemple d'abans per a comprovar que amb EXCEPT no eixirà la comarca València, ja que hi ha una fila idèntica en la segona consulta:</p>
+<pre><code>SELECT nom_c, provincia  
+  FROM COMARQUES  
+EXCEPT  
+SELECT nom, provincia  
+  FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
+ORDER BY nom_c;
+</code></pre>
+<h2 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h2>
+<p><strong>Ex_75</strong> Traure el nom de tots els clients i venedors implicats en alguna
+venda del primer trimestre de 2015.</p>
+<p><strong>Ex_76a</strong> Traure per mig de sentències d'operacions de conjunts els pobles on
+tenim algun venedor o algun client. No volem resultats repetits, i ho volem
+ordenat pel nom del poble.</p>
+<p><strong>Ex_76b</strong> Modificar l'anterior per a traure els pobles on tenim al mateix
+temps venedors i clients</p>
+<p><strong>Ex_76c</strong> Modificar l'anterior per a traure els pobles on tenim venedors però
+no tenim clients</p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-nd/2.5/">Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 2.5</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../23_subconsultes/" class="btn btn-neutral float-left" title="3. Subconsultes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exercicis_de_tot_el_tema_amb_els_resultats/" class="btn btn-neutral float-right" title="Exercicis amb els resultats (part II)">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../23_subconsultes/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exercicis_de_tot_el_tema_amb_els_resultats/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/2_client_dbeaver_installaci_i_confiuraci/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>2. DBeaver - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2. DBeaver";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL/2_client_dbeaver_installaci_i_confiuraci.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/2_client_dbeaver_installaci_i_confiuraci/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2. DBeaver</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#21-installacio-i-configuracio">2.1 Instal·lació i configuració</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#22-utilitzacio">2.2 Utilització</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >4. Operadors i Funcions de Postgres</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">SQL - POSTGRES</li>
+      <li class="breadcrumb-item active">2. DBeaver</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="2-dbeaver">2 DBeaver</h1>
+<h2 id="21-installacio-i-configuracio">2.1 Instal·lació i configuració</h2>
+<p>Com ja s'ha comentat, en aquest tema utilitzarem el Sistema Gestor de Bases de
+Dades <strong>PostgreSQL</strong>. Aquest SGBD utilitza l'arquitectura <strong>client-servidor</strong>.
+Això significa que hi ha un servidor central amb el PostgreSQL instal·lat, i
+hi haurà molts clients que es connectaran a aquest servidor. Es pot fer des de
+la mateixa màquina on està instal·lat el servidor, o des d'una altra.</p>
+<p>En el nostre cas, el servidor ja està en marxa i funcionant. Podrem accedir a
+ell tant des de dins de l'Institut com des de fora.</p>
+<p>A nosaltres, per a poder connectar amb el servidor PostgreSQL ens fa falta el
+<strong>client de PostgreSQL</strong>.</p>
+<p>Instal·larem <strong>DBeaver</strong> , un programa que està pegant molt fort i ens permet
+accedir a qualsevol Sistema Gestor de Bases de Dades molt còmodament.</p>
+<p>En els ordinadors de l'Institut ja el tenim instal·lat. En casa us l'haureu
+d'instal·lar però la seua instal·lació no ofereix cap problema.</p>
+<p>Haureu d'anar a la pàgina de DBeaver, concretament a la de Downloads:
+<a href="https://dbeaver.io/download/">https://dbeaver.io/download/</a></p>
+<p>Triarem la versió <strong>Comunity Edition</strong> , amb ella tindrem de sobres i és
+totalment lliure. Com veieu es pot instal·lar sense problemes en Windows, Mac
+i/o Linux</p>
+<p><img alt="" src="../T6_1_3_1.png" /></p>
+<p>La versió Enterprise Edition també ens permetria accedir a moltíssimes Bases
+de Dades NoSQL. Com veieu molt interessant.</p>
+<p>Com hem dit amb la versió Comunity Edition tindrem més que suficient.</p>
+<p>Tant en Linux com en Windows tenim la possibilitat de baixar-nos un fitxer
+comprimit (zip o tar.gz respectivament) que només haurem de descomprimir i
+buscar l'executable. També tenim la possibilitat de baixar-nos l'instal·lador,
+que en Windows seria un executable i en Linux un paquet. Però la primera opció
+del fitxer comprimit ens anirà bé.</p>
+<p>La versió en el moment de fer aquestos apunts és la 21.2.4</p>
+<p>Una vegada feta la instal·lació haurem de fer la connexió amb el SGBD que en
+el nostre cas serà PostgreSQL. Però connectar a qualsevol altre SGBD seria
+exactament igual.</p>
+<p>La primera vegada que arranquem el programa, segurament ens demanarà per fer
+la primera connexió. Arribarem a la mateixa finestra cada vegada que anem a
+fer una nova connexió.</p>
+<p><strong class="azul">Primera connexió a PostgreSQL: geo</strong></p>
+<p>Especificarem que volem connectar a PostgreSQL i a continuació donarem les
+dades de connexió, que són aquestes:</p>
+<ul>
+<li>Servidor (<strong>Host</strong>): <strong>89.36.214.106</strong></li>
+<li>Base de Dades (<strong>Database</strong>): <strong>geo</strong></li>
+<li>Usuari (<strong>Username</strong>): <strong>geo</strong></li>
+<li>Contrasenya (<strong>Password</strong>): <strong>geo</strong></li>
+</ul>
+<p>En aquesta Base de Dades tindrem unes taules que ens serviran per a fer els
+exercicis de SQL. Comentarem la seua estructura més endavant.</p>
+<p>Aquestes són les finestres on especificaríem l'anterior:</p>
+<table>
+<thead>
+<tr>
+<th><img alt="" src="../T6_1_3_2.png" /></th>
+<th><img alt="" src="../T6_1_3_3.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">Segona connexió a PostgreSQL: factura</strong></p>
+<p>Per als exercicis treballarem sobre una altra Base de Dades més completa que
+ens done més joc a l'hora de fer les sentències SQL. La Base de Dades
+s'anomena factura, i s'ha de connectar amb l'usuari factura amb contrasenya
+factura. Comentarem la seua estructura més endavant. Aquestes són les dades de
+connexió:</p>
+<ul>
+<li>Servidor (<strong>Host</strong>): <strong>89.36.214.106</strong></li>
+<li>Base de Dades (<strong>Database</strong>): <strong>factura</strong></li>
+<li>Usuari (<strong>Username</strong>): <strong>factura_alu</strong></li>
+<li>Contrasenya (<strong>Password</strong>): <strong>factura_alu</strong></li>
+</ul>
+<p>Aquestes són les pantalles on faríem la connexió:</p>
+<table>
+<thead>
+<tr>
+<th><img alt="" src="../T6_1_3_2.png" /></th>
+<th><img alt="" src="../T6_1_3_4.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<!--
+**<u>Exemple de connexió a Access: Empresa.accdb</u>**
+
+Únicament a mode il·lustratiu anem a mostrar una altra connexió diferent a les
+de PostgreSQL. Com que de moment només havíem treballat amb **Access** , anem
+a intentar connectar amb la Base de Dades **Empresa.accdb** feta en el tema
+anterior.
+
+La connexió l'haurem de fer a **MS Access (UCanAccess)**. Després només haurem
+de navegar per trobar la Base de Dades **Empresa.accdb**
+
+Ací presentem les pantalles per a fer la connexió:
+
+![](T6_1_1_4.png) | ![](T6_1_1_5.png)  
+---|---  
+-->
+
+<h2 id="22-utilitzacio">2.2 Utilització</h2>
+<p>Una vegada feta la connexió, <strong>DBeaver</strong> ens permetrà navegar per les taules i
+altres objectes de la Base de Dades, inspeccionar les taules, i el més
+important per a nosaltres, executar sentències SQL de forma còmoda.</p>
+<p>En la següent imatge es presenten algunes de les seues parts i
+caracteristiques. En ella s'ha fet doble clic sobre una taula, COMARQUES, per
+veure les seues característiques:</p>
+<p><img alt="" src="../T6_1_4_1.png" /></p>
+<p>També podem veure les dades, i fins i tot afegir noves files, esborrar o
+modificar les existents. Es pot ordenar les files i fer filtres:</p>
+<p><img alt="" src="../T6_1_4_2.png" /></p>
+<p>I també tindrem la possibilitat d'executar consultes SQL (en la primera imatge
+es mostra com arribar). En la finestra de sentències SQL podrem editar la
+consulta de forma còmoda (ens dóna molta ajuda per a no cometre errors
+sintàctics) i també ens mostra el resultat. Podem modificar quantes vegades
+vulguem. i des del menu <strong>File</strong> podrem guardar la consulta, cosa que farem
+per a tots els exercicis del tema:</p>
+<p><img alt="" src="../T6_1_4_3.png" /></p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 3.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../1_introducci/" class="btn btn-neutral float-left" title="1. Introducció"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../3_dades_dels_exemples_i_els_exercicis/" class="btn btn-neutral float-right" title="3 Dades dels exemples i els exercicis">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../1_introducci/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../3_dades_dels_exemples_i_els_exercicis/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

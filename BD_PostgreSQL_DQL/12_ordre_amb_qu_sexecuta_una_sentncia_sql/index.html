@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/12_ordre_amb_qu_sexecuta_una_sentncia_sql/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>12. Ordre amb que s'executa una sentència SQL - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "12. Ordre amb que s\u0027executa una sent\u00e8ncia SQL";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL/12_ordre_amb_qu_sexecuta_una_sentncia_sql.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/12_ordre_amb_qu_sexecuta_una_sentncia_sql/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >4. Operadors i Funcions de Postgres</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">12. Ordre amb que s'executa una sentència SQL</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">DQL Consultes (part I)</li>
+      <li class="breadcrumb-item active">12. Ordre amb que s'executa una sentència SQL</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="12-ordre-amb-que-sexecuta-una-sentencia-sql">12. Ordre amb què s'executa una sentència SQL</h1>
+<p>Com hem vist, i com veurem en la Part II d'aquest tema, la sentència
+<strong>SELECT</strong> és molt completa i molt potent. Pot fer moltes coses.</p>
+<p>Potser ens convinga saber en quin ordre s'executen les clàusules de què es
+compon, perquè això ens pot prevenir de possibles errors en el moment de
+construir una sentència d'una certa envergadura. L'ordre d'execució és el
+següent:</p>
+<ul>
+<li>Primer s'agafen les dades des de la taula o les taules especificades en el <strong>FROM</strong>. No podrem tractar informació que no tinguem en aquest origen de dades.</li>
+<li>Després s'eliminen les files que no acompleixen la condició del <strong>WHERE</strong> , en cas que tinguem aquesta clàusula.</li>
+<li>Després les files resultants s'agrupen pel o pels camps especificats en el <strong>GROUP BY</strong> , en cas que tinguem aquesta clàusula.</li>
+<li>Una vegada fets els grups, s'eliminen els que no acomplesquen la condició del <strong>HAVING</strong> , en cas que tinguem aquesta clàusula.</li>
+<li>Després se selecciona la informació especificada en les columnes, que en cas d'haver alguna funció d'agregat actuarà sobre els grups que resten (si teníem clàusula GROUP BY) o sobre el total de l'origen de dades.</li>
+<li>Posteriorment s'ordena pels camps especificats en el <strong>ORDER BY</strong> , en cas que tinguem aquesta clàusula.</li>
+<li>Després s'aplica els predicat <strong>DISTINCT</strong> en cas de tenir-lo especificat.</li>
+<li>Per últim s'agafen tantes files com indica la clàusula <strong>LIMIT</strong> , desplaçades tantes com indique <strong>OFFSET</strong> , si és que tenim aquesta clàusula especificada..</li>
+<li>Si tenim clàusula<strong>INTO</strong> es procedirà a crear una taula nova amb el resultat anterior.</li>
+</ul>
+<p>Tenir clar aquest ordre ens pot clarificar alguna cosa, i poder evitar alguns
+errors. L'error de la següent sentència ja s'havia explicat en l'apartat de la clàusula GROUP BY.</p>
+<pre><code>SELECT nom_c, COUNT(*), cod_m  
+  FROM POBLACIONS  
+  GROUP BY nom_c
+</code></pre>
+<blockquote>
+<p>ens donarà el següent error:</p>
+</blockquote>
+<p><img alt="" src="../T6_1_19_1.png" /></p>
+<blockquote>
+<p>Però si analitzem l'ordre en què s'executen és lògic: quan arribem a mostrar
+els camps (entre ells <strong>cod_m</strong>) els grups ja s'han fet, i per a valors
+iguals de <strong>nom_c</strong>. En aquest moment no puc traure una cosa individual de
+cada grup com és el codi de municipi, perquè ja s'ha agrupat. En aquest
+moment només es pot intentar traure el nom de la comarca (ja que té el
+mateix valor per a tot el grup, és el camp pel qual hem agrupat), o alguna
+funció d'agregat, que calcula sobre el grup. I d'això ens intenta avisar
+PostgreSQL.</p>
+<p>Per a solucionar-lo podem incloure el <strong>cod_m</strong> en el <strong>GROUP BY</strong> , i
+aleshores farem un grup per cada comarca i població diferent, però
+segurament això no ens valdrà de res en aquest exemple, perquè cada grup
+només contindrà un element (un municipi), encara que en altres exemples sí
+que pot tenir sentit. O si no era això el que preteníem, senzillament llevem
+el camp cod_m de la sentència, i ens funcionarà bé.</p>
+</blockquote>
+<p>Un altre exemple il·lustratiu (que ja el vam posar molt paregut en l'apartat de la clàusula GROUP BY) pot ser el següent: podríem intentar traure l'altura màxima de tots els
+pobles, i la població que té aquesta altura. Podríem estar temptats de fer-lo
+d'aquesta manera:</p>
+<pre><code>SELECT MAX(altura), nom  
+  FROM POBLACIONS;
+</code></pre>
+<blockquote>
+<p>Ens donarà el mateix error que abans, ja que com tenim una funció d'agregat
+intentarà fer grups, i com no tenim clàusula GROUP BY tota la taula serà un
+grup. I podrà calcular el màxim sense problemes, però no podrà traure una
+cosa individual del grup, com és el nom. I en aquest cas no es pot
+solucionar incloent el nom en el GROUP BY, perquè aleshores farem un grup
+per cada població. De moment, abans de veure les subconsultes, només podem
+resoldre aquest exemple ordenant per l'altura de forma descendent, i fer
+<strong>LIMIT 1</strong>.</p>
+</blockquote>
+<p>Podem observar que si tenim clàusula <strong>GROUP BY</strong> , a partir d'aquest moment
+tots els camps que posem han d'estar en el GROUP BY o en una funció d'agregat,
+tant en la condició del <strong>HAVING</strong> , com en les <strong>columnes</strong> com en el <strong>ORDER
+BY</strong>. En canvi no caldrà per a la clàusula <strong>WHERE</strong> , ja que aquesta es
+realitza abans que el <strong>GROUP BY</strong></p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 3.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../11_consulta_de_creaci_de_taules/" class="btn btn-neutral float-left" title="11. Consulta de creació de taules"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exercicis_de_tot_el_tema_amb_els_resultats/" class="btn btn-neutral float-right" title="Exercicis amb els resultats (part I)">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../11_consulta_de_creaci_de_taules/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exercicis_de_tot_el_tema_amb_els_resultats/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

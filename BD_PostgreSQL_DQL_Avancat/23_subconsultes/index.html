@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL_Avancat/23_subconsultes/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>3. Subconsultes - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3. Subconsultes";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL_Avancat/23_subconsultes.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL_Avancat/23_subconsultes/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >4. Operadors i Funcions de Postgres</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../BD_PostgreSQL_DQL/6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../BD_PostgreSQL_DQL/7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/8_la_clusula_order_by/">8. La clàusula ORDER BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">3. Subconsultes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#31-sintaxi-en-el-from">3.1 Sintaxi en el FROM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#32-sintaxi-en-el-where-o-el-having">3.2 Sintaxi en el WHERE o el HAVING</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#33-sintaxi-en-el-select">3.3 Sintaxi en el SELECT</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercicis">Exercicis</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">DQL Consultes avançades (part II)</li>
+      <li class="breadcrumb-item active">3. Subconsultes</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="3-subconsultes">3 Subconsultes</h1>
+<p>Una subconsulta és una consulta dins d'una altra consulta. Aquesta subconsulta
+pot tenir tots els elements que hem vist fins ara.</p>
+<p>El lloc on posar una subconsulta dins de la consulta principal pot ser en la
+clàusual WHERE o en la clàusula HAVING (formant part d'una condició) o en el
+FROM, i ha d'anar entre parèntesis. Fins i tot es pot posar en el mateix
+SELECT, és a dir, en les columnes que van després del SELECT.</p>
+<ul>
+<li>
+<p>Si va en el <strong>FROM</strong> , la subconsulta serà l'origen de les dades, i per tant s'executarà abans i proporcionarà les dades per a la consulta principal.</p>
+</li>
+<li>
+<p>Si va en el <strong>WHERE</strong> o el <strong>HAVING</strong> formarà part d'una condició, i així podrem comparar en la consulta principal un camp amb el que torne la subconsulta, per exemple. A banda de les comparacions normals que ja hem vist en el WHERE o el HAVING, podrem posar alguns operadors i predicats especials, com veurem més avant.</p>
+</li>
+<li>
+<p>Si va en el mateix <strong>SELECT</strong> normalment serà per a traure un resultat global que no afecta a la resta de la consulta</p>
+</li>
+</ul>
+<h2 id="31-sintaxi-en-el-from">3.1 Sintaxi en el FROM</h2>
+<pre><code>SELECT ...  
+  FROM ( _Subconsulta_) AS _Nom_Subconsulta_
+</code></pre>
+<p>Anem a posar un exemple per entendre-ho. Volem traure la mitjana de pobles per
+comarca. Ho podem fer de la següent manera: primer comptem quants pobles hi ha
+en cada comarca, i una vegada calculat això traem la mitjana.</p>
+<pre><code>SELECT AVG(quants)  
+  FROM (SELECT COUNT(*) AS quants  
+        FROM POBLACIONS  
+        GROUP BY nom_c) AS S ;
+</code></pre>
+<p>Observeu que és necessari posar-li un àlias a la columna de la subconsulta
+(quants) per a poder fer referència a ella en la consulta principal. I per una
+altra banda, en PostgreSQL les subconsultes que van al FROM han de tenir
+obligatòriament un àlies. Si no posàrem <strong>AS S</strong> (o qualsevol altre nom)
+ens donaria error.</p>
+<p>Com veieu, ja té un nivell de complexitat més que acceptable. Sempre s'executa
+primer la subconsulta i amb les dades que proporciona, s'executa la consulta
+principal. Pel grau de complexitat és molt recomanable anar de dins cap a
+fora, és a dir, pensar bé la subconsulta, fins i tot executar-la per veure si
+trau el que necessitem (en l'exemple veure si trau el nombre de poblacions de
+cadascuna de les 34 comarques), i quan estiguem segurs que funciona bé crear
+la consulta principal.</p>
+<h2 id="32-sintaxi-en-el-where-o-el-having">3.2 Sintaxi en el WHERE o el HAVING</h2>
+<pre><code>SELECT ...  
+  FROM Taula  
+  WHERE camp operador ( _Subconsulta_)
+</code></pre>
+<p>Podem observar que el que farem serà comparar algun camp de la taula (o una
+expressió amb alguna funció) amb el resultat que ve de la subconsulta.</p>
+<p>Abans de veure què podem posar com a operador o com a camp o fins i tot veure
+uns predicats que podrem utilitzar, posarem un exemple, per clarificar les
+coses. Intentarem traure les comarques amb una altura superior a la mitjana.
+Calcular la mitjana de les altures és fàcil, i serà la subconsulta. El que
+farem serà comparar l'altura de cada població amb aquesta mitjana.</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE altura &gt; (SELECT AVG(altura)  
+                  FROM POBLACIONS)
+</code></pre>
+<p>Si executeu la consulta, veureu que l'altura de tots els pobles és superior a
+300,44 que és l'altura mitjana (aproximadament, perquè ho calcula amb molta
+precisió)</p>
+<p>No hi ha cap problema en posar dues vegades la mateixa taula. Els camps es
+refereixen a la taula més propera. I funciona perfectament perquè la
+subconsulta ens torna un únic valor, la mitjana d'altures, i en la consulta
+principal es compara cada altura amb aquest valor. Posteriorment veurem com
+solucionar el problema de que la subconsulta torne més d'un valor.</p>
+<p><strong class="azul">Operadors de comparació i predicats ANY, ALL, SOME</strong></p>
+<p>És com l'exemple de dalt, però amb qualsevol operador de comparació. Es compara el camp (o l'expressió) amb el resultat de la subconsulta. Si la subconsulta només torna un valor, no hi ha més problema, però si torna més d'un valor (més d'una fila) de moment seria incorrecte (no es pot comparar un camp amb uns quants valors). Posem un altre exemple per il·lustrar. Traure la població més alta es podria fer d'aquesta manera.</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE altura = (SELECT MAX(altura)  
+                  FROM POBLACIONS)
+</code></pre>
+<blockquote>
+<p>No hi ha problema perquè la subconsulta torna un valor. Però anem a
+complicar-la anem a veure les poblacions més altes de cada comarca. Podríem
+intentar-lo d'aquesta manera:</p>
+</blockquote>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE altura = (SELECT MAX(altura)  
+                  FROM POBLACIONS
+                  GROUP BY nom_c)
+</code></pre>
+<blockquote>
+<p>Però ens donaria el següent error:</p>
+<p><img alt="" src="../T6_II_3_1.png" /></p>
+<p>I és que la subconsulta torna 34 valors (un per cada comarca), i d'aquesta
+manera no es pot comparar el valor de l'esquerra del igual amb els 34 valors
+de la dreta. Per a solucionar el problema de quan torna més d'un valor podem
+utilitzar els predicats <strong>ALL</strong>, <strong>ANY</strong>, <strong>SOME</strong>.</p>
+<ul>
+<li>Si utilitzem <strong>ALL</strong>, el resultat serà cert si la comparació és certa amb
+<strong>TOTS</strong> els valors que torna la subconsulta.</li>
+<li>Si utilitzem <strong>ANY</strong> o <strong>SOME</strong> (que són sinònims) el resultat serà cert
+si la comparació és certa amb <strong>ALGUN</strong> valor de la subconsulta.
+</li>
+</ul>
+<p>En el nostre exemple, segurament ens convindria <strong>ANY</strong>.</p>
+</blockquote>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE altura = ANY (SELECT MAX(altura)  
+                      FROM POBLACIONS
+                      GROUP BY nom_c)
+</code></pre>
+<blockquote>
+<p>Aquesta consulta no funcionarà bé del tot, ja que seleccionarà totes les
+poblacions que coincideixen amb alguna de les altures màximes, siguen de la
+seua comarca o no. Així per exemple, l'altura màxima de la comarca de la
+<strong>Plana Alta</strong> és la <strong>Serratella,</strong> amb 781 metres, que efectivament
+apareix al llistat. Però també apareix <strong>Castelló</strong> , que té una altura de
+30 metres. I apareix perquè l'altura màxima de la comarca <strong>Ribera Baixa</strong>
+dóna la casualitat que és 30 metres (Almussafes). Ja dependrem a fer bé
+aquesta consulta en els exemples posteriors, però per al fet de comparar amb
+molts valors ens va bé.</p>
+</blockquote>
+<p><strong class="azul">L'operador IN</strong></p>
+<p>No serà problema que la subconsulta torne un valor o
+molts. La condició serà certa si el valor del camp (o de l'expressió) està
+entre la llista de valors que torna la subconsulta. També poden utilitzar
+NOT IN, i la condició serà certa quan el valor del camp no està entre la
+llista. Per exemple, una altra manera de traure les poblacions que no tenen
+institut, que la vista en les combinacions externes. En la subconsulta traem
+els codis de municipi de la taula INSTITUTS, i per tant són els pobles que
+tenen institut, i en la consulta principal volem els que no estan en aquesta
+llista</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE cod_m NOT IN (SELECT cod_m  
+                      FROM INSTITUTS)
+</code></pre>
+<p><strong class="azul">L'operador EXISTS</strong></p>
+<p>És segurament el més incòmode. No es compara un camp (o expressió) amb la subconsulta, sinó únicament es posa <strong>[NOT] EXISTS (<em>subconsulta</em>)</strong> . La condició serà certa si la subconsulta torna <strong>alguna fila</strong> , i no serà certa si no torna cap fila. Intentem fer el mateix exemple d'abans, el dels pobles sense institut. Hem d'aconseguir que la subconsulta no tinga cap fila en el cas dels que no tenen institut. De paraula ho podem dir així: volem els pobles per als quals no existeix cap fila en INSTITUTS amb el mateix codi de municipi. Ara ja es pot intuir per on van els tirs:</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE NOT EXISTS (SELECT *  
+                    FROM INSTITUTS  
+                    WHERE cod_m= POBLACIONS.cod_m)
+</code></pre>
+<blockquote>
+<p>mireu com si en la subconsulta posem un camp (en l'exemple cod_m), si el
+camp és de la taula (o taules) de la subconsulta, es referirà a ell, per
+això si volem fer referència a un camp de la taula o taules de la consulta
+principal hem de posar el nom de la taula davant.</p>
+</blockquote>
+<h2 id="33-sintaxi-en-el-select">3.3 Sintaxi en el SELECT</h2>
+<pre><code>SELECT ... ( _Subconsulta_)  
+FROM Taula
+</code></pre>
+<p>Anem a posar també un exemple per entendre-ho. Anem a calcular la diferència
+de l'altura de cada població amb la mitjana. La mitjana és un resultat global
+indepentent de la resta de la consulta, que en aquest cas és molt senzilla
+perquè hem d'agafar informació simple de les poblacions. La subconsulta també
+és molt senzilla, perquè només hem de calcular la mitjana d'altures).</p>
+<pre><code>SELECT nom, altura, altura - (SELECT AVG(altura) FROM POBLACIONS)  
+  FROM POBLACIONS
+</code></pre>
+<p><strong><u>Exemples</u></strong></p>
+<p>1) <strong>Traure l'altura mitjana de comarca més gran i la més menuda.</strong></p>
+<p>Ens fa falta prèviament l'altura mitjana de cada comarca, i això serà la
+subconsulta. No oblidem posar un àlias al camp de la subconsulta, per poder
+fer referència en la consulta principal. I no oblidem tampoc que les
+subconsultes en el FROM han de tenir àlies.</p>
+<pre><code>SELECT MAX(mitjana),MIN(mitjana)  
+FROM (SELECT AVG(altura) AS mitjana  
+      FROM POBLACIONS  
+      GROUP BY nom_c) AS S;
+</code></pre>
+<p>2) <strong>Traure tota la informació de les poblacions que tenen més de 5 instituts.</strong></p>
+<p>Podem pensar en una subconsulta on estiguen els codis de municipi de les
+poblacions que tenen més de 5 instituts (es consulta en la teula INSTITUTS
+agrupant per codi_m i comptant el número de files per a que siga major que 5).</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE cod_m IN (SELECT cod_m  
+                  FROM INSTITUTS  
+                  GROUP BY cod_m  
+                  HAVING count(*) &gt; 5)
+</code></pre>
+<p>3) <strong>Traure tota la informació de la població més alta i de la més baixa.</strong></p>
+<p>Ens plantegem 2 subconsultes, la que trau l'altura màxima i la que trau
+l'altura mínima (en una única sobconsulta ens tornaria valors en 2 columnes, i
+estaria més complicat). Senzillament serà traure tota la informació de les
+poblacions que tenen una altura igual al que torna una subconsulta o al que
+torna l'altra.</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  WHERE altura = (SELECT MAX(altura)  
+                  FROM POBLACIONS)  
+        OR altura = (SELECT MIN(altura)  
+                    FROM POBLACIONS);
+</code></pre>
+<p>4) <strong>Traure la població més alta de cada comarca.</strong></p>
+<p>La dificultat està en que ha de ser la màxima de les altures de la seua
+comarca. Per tant, en la subconsulta hem de fer referència a la comarca en
+qüestió. Com sempre estem tractant la taula POBLACIONS, tant en la consulta
+com en la subconsulta, haurem de posar un nom a la de la consulta principal,
+per poder fer referència a ella des de la subconsulta.</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS T1  
+  WHERE altura = (SELECT MAX(altura)  
+                  FROM POBLACIONS  
+                  WHERE nom_c= T1.nom_c);
+</code></pre>
+<p>En el resultat obtenim 35 poblacions, quan només hi ha 34 comarques. La raó és
+que a l'Alcoià, hi ha 2 poblacions amb l'altura màxima (816 metres), per tant
+el resultat és correcte</p>
+<p>5) <strong>Obtenir el nom de la comarca i la província de les comarques que tenen una altura mitjana més alta que la mitjana de totes les poblacions.</strong></p>
+<p>La subconsulta serà prou senzilla: la mitjana d'altures de les poblacions. En
+la consulta principal haurem d'agrupar per cada comarca i calcular la mitjana
+d'altures de les poblacions, i comparar-la amb la mitjana que ens ve de la
+subconsulta. Com que demana també la província, ens fa falta també la taula
+COMARQUES, i per tant l'haurem de reunir amb POBLACIONS; en aquesta ocasió ho
+hem fet posant la condicó en el WHERE.</p>
+<pre><code>SELECT COMARQUES.nom_c, provincia, AVG(altura)  
+  FROM COMARQUES , POBLACIONS  
+  WHERE COMARQUES.nom_c=POBLACIONS.nom_c  
+  GROUP BY COMARQUES.nom_c, provincia  
+  HAVING AVG(altura) &gt; (SELECT AVG(altura)  
+                        FROM POBLACIONS)
+</code></pre>
+<p>6) <strong>Traure el nom de la comarca amb la província, número de pobles de cadascuna i el percentatge que suposa respecta al total de pobles.</strong></p>
+<p>Tota la informació la podem traure d'una reunió entre les taules COMARQUES i
+POBLACIONS (per a comptar quants pobles hi ha en cada comarca), però per a
+poder calcular el percentatge necessitem el número total de poblacions, que el
+podem calcular amb una senzilla subconsulta. El lloc més còmode és en el
+SELECT. La reunió l'hem feta en aquesta ocasió amb el USING.</p>
+<pre><code>SELECT COMARQUES.nom_c, provincia, COUNT(cod_m), COUNT (cod_m)*100.0/(SELECT
+COUNT(*) FROM POBLACIONS)  
+  FROM COMARQUES INNER JOIN POBLACIONS USING(nom_c)  
+  GROUP BY 1,2;
+</code></pre>
+<h2 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h2>
+<p><strong>Ex_64</strong> Traure el número màxim de factures fetes a un client</p>
+<p><strong>Ex_65</strong> Traure el l'import que suposa la factura més cara i l'import que
+suposa la més barata (sense considerar ni descomptes ni IVA)</p>
+<p><strong>Ex_66</strong> Traure el número de factures més alt que s'ha venut per venedor en
+cada trimestre (no traurem qui és el venedor, que seria encara més complicat).
+Per a poder agrupar per trimestre, ens farà falta la funció
+<strong>TO_CHAR</strong><strong>(data,'Q')</strong> , que trau el número de trimestre. El pas previ és
+calcular el número de factures de cada venedor i en cada trimestre. Després,
+amb la informació anterior, voldrem calcular el màxim de cada trimestre.</p>
+<p><strong>Ex_67</strong> Traure els articles més cars que la mitjana. Tragueu-los ordenats per
+la categoria, i després per codi d'article.</p>
+<p><strong>Ex_68</strong> Modificar l'anterior per a traure els articles més cars que la
+mitjana de la seua categoria. Tragueu-los ordenats per la categoria</p>
+<p><strong>Ex_69</strong> Traure els pobles on tenim clients però no tenim venedors. Ha de ser
+per mig de subconsultes (en plural). Ordeneu per codi del poble.</p>
+<p><strong>Ex_70</strong> Traure els pobles on tenim més venedors que clients. Traure el codi
+del poble, el nom i el número de venedors. Ordena per nom del poble.</p>
+<p><strong>Ex_71</strong> Traure l'import de la factura més cara de cada trimestre. La
+informació prèvia és la factura amb la data i l'import. A partir d'ahí haurem
+de calcular el màxim de l'import per a cada trimestre (no caldrà traure quina
+factura és).</p>
+<p><strong>Ex_72</strong> Traure el nom del venedor, el número de factures que ha venut i el
+percentatge que suposa sobre el total. Podria ser que en el moment de calcular
+el percentatge, el número resultant s'haja de convertir a numèric per a que
+dóne bé el resultat, ja que en fer una operació amb enters, el resultat serà
+enter. Aleshores hauríem d'obligar a que el número tinga decimals
+(<strong>::NUMERIC</strong>). I la funció d'arrodonir és <strong>ROUND</strong>. Ordeneu pel nom.</p>
+<p><strong>Ex_73</strong> Traure tota la informació (amb l'import) de la factura més cara.
+Ha de ser per mig de subconsultes. Mireu que segurament hi haurà 2
+subconsultes. En la més interna calculem l'import de les factures. En l'altra
+calculem el màxim. I en la consulta principal, busquem la factura que
+coincideix amb aquest màxim.</p>
+<p><strong>Ex_74</strong> (voluntari) Obtenir el venedor que ha venut més unitats de cada
+categoria, sense considerar en la categoria el valor nul. Aquesta consulta la
+podríem considerar ja com molt avançada.</p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-nd/2.5/">Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 2.5</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../22_combinacions_de_taules/" class="btn btn-neutral float-left" title="2. Combinacions de taules"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../24_consultes_doperacions_de_conjunts/" class="btn btn-neutral float-right" title="4. Consultes d'operacions de conjunts">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../22_combinacions_de_taules/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../24_consultes_doperacions_de_conjunts/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

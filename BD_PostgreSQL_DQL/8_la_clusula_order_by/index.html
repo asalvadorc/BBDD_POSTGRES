@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/8_la_clusula_order_by/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>8. La clàusula ORDER BY - BD - Bases de Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "8. La cl\u00e0usula ORDER BY";
+        var mkdocs_page_input_path = "BD_PostgreSQL_DQL/8_la_clusula_order_by.md";
+        var mkdocs_page_url = "/BBDD_POSTGRESQL/BD_PostgreSQL_DQL/8_la_clusula_order_by/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">SQL - POSTGRES</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius_i_coneixements_previs/">Objectius i Coneixements previs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../1_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_client_dbeaver_installaci_i_confiuraci/">2. DBeaver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_dades_dels_exemples_i_els_exercicis/">3 Dades dels exemples i els exercicis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >4. Operadors i Funcions de Postgres</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../6_operadors/">4.1. Operadors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../7_funcions/">4.2. Funcions</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes (part I)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1_la_consulta_select/">1. La consulta SELECT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_consulta_bsica/">2. Consulta bàsica</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_lies_en_les_columnes/">3. Àlies en les columnes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_la_clusula_where/">4. La clàusula WHERE</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_funcions_dagregat/">5. Funcions d'agregat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6_la_clusula_group_by/">6. La clàusula GROUP BY</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../7_la_clusula_having/">7. La clàusula HAVING</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">8. La clàusula ORDER BY</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#exercicis">Exercicis</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9_el_predicat_distinct/">9. El predicat DISTINCT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10_la_clusula_limit__offset/">10. La clàusula LIMIT .. OFFSET</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11_consulta_de_creaci_de_taules/">11. Consulta de creació de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12_ordre_amb_qu_sexecuta_una_sentncia_sql/">12. Ordre amb que s'executa una sentència SQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part I)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DQL Consultes avançades (part II)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/">1. Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/">2. Combinacions de taules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/">3. Subconsultes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/">4. Consultes d'operacions de conjunts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/">Exercicis amb els resultats (part II)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">DQL Consultes (part I)</li>
+      <li class="breadcrumb-item active">8. La clàusula ORDER BY</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="8-la-clausula-order-by">8. La clàusula ORDER BY</h1>
+<p>Ordena les files del resultat respecte l'ordre especificat</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>SELECT &lt;columnes&gt;  
+  FROM &lt;taules&gt;  
+  ORDER BY camp1 [ASC | DESC] { , camp2 [ASC | DESC] }
+</code></pre>
+<p>Ací tenim un exemple:</p>
+<pre><code>SELECT nom_c, provincia  
+  FROM COMARQUES  
+  ORDER BY nom_c
+</code></pre>
+<p>S'ordenaran les files pel camp, en l'ordre marcat: ascendent o descendent (per
+defecte, ascendent). Si hi haguera un segon camp d'ordenació, aquest entraria
+en joc en cas de valors iguals del primer. Aquest segon podrà ser en ordre
+ascendent o descendent, independentment de l'ordre del primer camp.</p>
+<pre><code>SELECT nom_c, provincia  
+  FROM COMARQUES  
+  ORDER BY provincia DESC, nom_c
+</code></pre>
+<p>Es podrà ordenar per qualsevol camp de la taula, estiga indexada per aquest
+camp o no. L'avantatge d'estar indexada respecte a un camp és la rapidesa en
+l'ordenació. Així, si tenim una taula gran i ordenem per un determinat camp,
+es perdrà temps en aquesta ordenació. Si contínuament estem ordenant per
+aquest camp, perdrem aquest temps moltes vegades. Aleshores seria convenient
+crear un índex. Però hem de recordar que la creació d'un índex ocupa espai.
+Per tant no és bona solució indexar per tots els camps. Únicament, en tot cas,
+per aquells que més s'ordene. Veurem la creació d'índex en la tercera part
+d'aquest tema.</p>
+<p>I es pot especificar en l'ordenació, una expressió que agafe un o més d'un
+camp amb operadors i funcions. Es pot posar un camp o una expressió que no
+estiga en la llista de camps o expressions que es volen visualitzar (al costat
+del SELECT), encara que normalment sí que ho visualitzarem, per a poder
+comprovar que realment està ordenat pel que s'ha especificat. Per exemple, si
+volem ordenar per la densitat d'habitants de les poblacions, que es calcula
+dividint el número d'habitants per l'extensió:</p>
+<pre><code>SELECT nom, poblacio, extensio  
+  FROM POBLACIONS  
+  ORDER BY poblacio/extensio DESC
+</code></pre>
+<blockquote>
+<p>Observeu que estem ordenant per un camp (<strong>poblacio / extensio</strong>) que no
+estem visualitzant, encara que seria molt més il·lustratiu mostrar-lo</p>
+</blockquote>
+<p>Opcionalment, en el moment d'especificar el camp o l'expressió per la qual
+volem ordenar, si aquesta apareix en la llista de columnes a visualitzar,
+podrem posar senzillament el número d'ordre de la columna. Així, per exemple,
+podem fer el següent:</p>
+<pre><code>SELECT nom, poblacio, extensio, poblacio/extensio  
+  FROM POBLACIONS  
+  ORDER BY 4 DESC
+</code></pre>
+<blockquote>
+<p>On estem indicant que s'ordene de forma descendent per la quarta columna que
+va a visualitzar-se, és a dir, per <strong>oblacio / extensio</strong></p>
+</blockquote>
+<p>Hem d'observar que la clàusula ORDER BY és l'última, i que en cas d'haver
+clàusula GROUP BY, s'intentarà ordenar després d'haver agrupat. Per tant en
+cas de que la sentència continga un GROUP BY o s'haja utilitzat alguna funció
+d'agregat (que implica fer grups), només podrem posar en el ORDER BY camps que
+estiguen en el GROUP BY o que formen part d'una funció d'agregat. El raonament
+és el mateix que el fet en la clàusula GROUP BY o HAVING i l'error en cas de
+no respectar açò seria el matiex que el vist en aquell apartat.</p>
+<p><strong><u>Exemples</u></strong></p>
+<p>1) Traure tota la informació de les poblacions ordenades pel nom de la població.</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  ORDER BY nom
+</code></pre>
+<p>2) Traure tota la informació de les poblacions, ordenades pel nom de la comarca, i dins d'aquesta per l'altura (de forma descendent).</p>
+<pre><code>SELECT *  
+  FROM POBLACIONS  
+  ORDER BY nom_c, altura DESC
+</code></pre>
+<p>3) Traure les comarques amb el número de pobles i total d'habitants, d'aquelles que tenen més de 10 pobles, ordenades pel número de pobles, i dins d'aquest pel total de població de forma descendent.</p>
+<pre><code>SELECT nom_c, COUNT(*), SUM(poblacio)  
+  FROM POBLACIONS  
+  GROUP BY nom_c  
+  HAVING COUNT(*) &gt; 10  
+  ORDER BY COUNT(*) , SUM(poblacio) DESC
+</code></pre>
+<h2 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h2>
+<p><strong>Ex_34</strong> Traure tots els clients ordenats per codi de població, i dins
+d'aquestos per codi postal.</p>
+<p><strong>Ex_35</strong> Traure tots els articles ordenats per la categoria, dins d'aquest pel
+stock, i dins d'aquest per preu (de forma descendent)</p>
+<p><strong>Ex_36</strong> Traure els resultats de la consulta <strong>Ex_33</strong> ordenats pel total de la
+factura quan ja s'ha aplicat el descompte, de forma descendent.</p>
+<p><strong>Ex_37</strong> Traure tots els articles ordenats per la diferència entre el stock i
+el stock mínim de forma descendent. Com que en moltes ocasions el stock o el
+stock mínim és nul, hem de considerar en aquestos casos com 0. Per tant hem de
+tornar a utilitzar la funció <strong>COALESCE(stock,0)</strong> (i també per al stock
+mínim).</p>
+<p><strong>Ex_38</strong> Traure els codis de venedor amb el número de factures venudes en el
+segon semestre de 2015, ordenades per aquest número de forma descendent</p>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 3.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../7_la_clusula_having/" class="btn btn-neutral float-left" title="7. La clàusula HAVING"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../9_el_predicat_distinct/" class="btn btn-neutral float-right" title="9. El predicat DISTINCT">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../7_la_clusula_having/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../9_el_predicat_distinct/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
