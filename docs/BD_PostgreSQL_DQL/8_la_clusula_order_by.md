@@ -3,26 +3,26 @@
 Ordena les files del resultat respecte l'ordre especificat
 
 **<u>Sintaxi</u>**
-```
-SELECT <columnes>  
-  FROM <taules>  
-  ORDER BY camp1 [ASC | DESC] { , camp2 [ASC | DESC] }
-```
+
+    SELECT <columnes>  
+      FROM <taules>  
+      ORDER BY camp1 [ASC | DESC] { , camp2 [ASC | DESC] }
+
 Ací tenim un exemple:
-```
-SELECT nom_c, provincia  
-  FROM COMARQUES  
-  ORDER BY nom_c
-```
+
+    SELECT nom_c, provincia  
+      FROM COMARQUES  
+      ORDER BY nom_c
+
 S'ordenaran les files pel camp, en l'ordre marcat: ascendent o descendent (per
 defecte, ascendent). Si hi haguera un segon camp d'ordenació, aquest entraria
 en joc en cas de valors iguals del primer. Aquest segon podrà ser en ordre
 ascendent o descendent, independentment de l'ordre del primer camp.
-```
-SELECT nom_c, provincia  
-  FROM COMARQUES  
-  ORDER BY provincia DESC, nom_c
-```
+
+    SELECT nom_c, provincia  
+      FROM COMARQUES  
+      ORDER BY provincia DESC, nom_c
+
 Es podrà ordenar per qualsevol camp de la taula, estiga indexada per aquest
 camp o no. L'avantatge d'estar indexada respecte a un camp és la rapidesa en
 l'ordenació. Així, si tenim una taula gran i ordenem per un determinat camp,
@@ -40,11 +40,11 @@ del SELECT), encara que normalment sí que ho visualitzarem, per a poder
 comprovar que realment està ordenat pel que s'ha especificat. Per exemple, si
 volem ordenar per la densitat d'habitants de les poblacions, que es calcula
 dividint el número d'habitants per l'extensió:
-```
-SELECT nom, poblacio, extensio  
-  FROM POBLACIONS  
-  ORDER BY poblacio/extensio DESC
-```
+
+    SELECT nom, poblacio, extensio  
+      FROM POBLACIONS  
+      ORDER BY poblacio/extensio DESC
+
 > Observeu que estem ordenant per un camp (**poblacio / extensio**) que no
 > estem visualitzant, encara que seria molt més il·lustratiu mostrar-lo
 
@@ -52,11 +52,11 @@ Opcionalment, en el moment d'especificar el camp o l'expressió per la qual
 volem ordenar, si aquesta apareix en la llista de columnes a visualitzar,
 podrem posar senzillament el número d'ordre de la columna. Així, per exemple,
 podem fer el següent:
-```
-SELECT nom, poblacio, extensio, poblacio/extensio  
-  FROM POBLACIONS  
-  ORDER BY 4 DESC
-```
+
+    SELECT nom, poblacio, extensio, poblacio/extensio  
+      FROM POBLACIONS  
+      ORDER BY 4 DESC
+
 > On estem indicant que s'ordene de forma descendent per la quarta columna que
 > va a visualitzar-se, és a dir, per **oblacio / extensio**
 
@@ -71,34 +71,28 @@ no respectar açò seria el matiex que el vist en aquell apartat.
 **<u>Exemples</u>**
 
   1) Traure tota la informació de les poblacions ordenades pel nom de la població.
-```
-SELECT *  
-  FROM POBLACIONS  
-  ORDER BY nom
-```
+
+    SELECT *  
+      FROM POBLACIONS  
+      ORDER BY nom
+
   2) Traure tota la informació de les poblacions, ordenades pel nom de la comarca, i dins d'aquesta per l'altura (de forma descendent).
-```
-SELECT *  
-  FROM POBLACIONS  
-  ORDER BY nom_c, altura DESC
-```
+
+    SELECT *  
+      FROM POBLACIONS  
+      ORDER BY nom_c, altura DESC
+
   3) Traure les comarques amb el número de pobles i total d'habitants, d'aquelles que tenen més de 10 pobles, ordenades pel número de pobles, i dins d'aquest pel total de població de forma descendent.
 
-```
-SELECT nom_c, COUNT(*), SUM(poblacio)  
-  FROM POBLACIONS  
-  GROUP BY nom_c  
-  HAVING COUNT(*) > 10  
-  ORDER BY COUNT(*) , SUM(poblacio) DESC
-```
 
-```
-SELECT nom_c, COUNT(*), SUM(poblacio)  
-  FROM POBLACIONS  
-  GROUP BY nom_c  
-  HAVING COUNT(*) > 10  
-  ORDER BY 2 , 3 DESC
-```
+    SELECT nom_c, COUNT(*), SUM(poblacio)  
+      FROM POBLACIONS  
+      GROUP BY nom_c  
+      HAVING COUNT(*) > 10  
+      ORDER BY COUNT(*) , SUM(poblacio) DESC
+
+
+
 
 ## :pencil2: Exercicis
 

@@ -7,10 +7,10 @@ eixiria per exemple 12040 (el codi de Castelló) en tantes files com instituts
 de Castelló tinguem (concretament 14). És el mateix resultat que si haguérem
 posat el predicat **ALL** davant de les columnes, ja que aquest és el predicat
 per defecte:
-```
-SELECT ALL cod_m  
-  FROM INSTITUTS
-```
+
+    SELECT ALL cod_m  
+      FROM INSTITUTS
+
 Aquest resultat no és el correcte, si volem consultes com "Poblacions on hi ha
 instituts". Seria millor si isquera 12040 només una vegada. Açò ho
 aconseguirem amb el predicat DISTINCT.
@@ -22,15 +22,15 @@ per al conjunt dels camps (és a dir les files diferents, que en un camp poden
 coincidir, però no en el conjunt de tots els camps)
 
 **<u>Sintaxi</u>**
-```
-SELECT DISTINCT <columnes >  
-  FROM <taules>
-```
+
+    SELECT DISTINCT <columnes >  
+      FROM <taules>
+
 Així, en l'exemple anterior:
-```
-SELECT DISTINCT cod_m  
-  FROM INSTITUTS
-```
+
+    SELECT DISTINCT cod_m  
+      FROM INSTITUTS
+
 Hi ha una variant del DISTINCT que suporta PostgreSQL, però que no suporten
 altres SGBD més senzills, com Access o LibreOffice Base. És posar el DISTINCT
 dins d'una funció d'agregat, com per exemple COUNT. El resultat és que
@@ -39,29 +39,29 @@ diferents del camp que vaja a continuació.
 
 Així per exemple, si volem comptar en quantes poblacions diferents tenim
 instituts, la consulta és tan senzilla com aquesta:
-```
-SELECT COUNT(DISTINCT cod_m)  
-  FROM INSTITUTS
-```
+
+    SELECT COUNT(DISTINCT cod_m)  
+      FROM INSTITUTS
+
 **<u>Exemples</u>**
 
   1) Traure les diferents provincies.
-```
-SELECT DISTINCT provincia  
-  FROM COMARQUES
-```
+
+    SELECT DISTINCT provincia  
+      FROM COMARQUES
+
   2) Traure els distints districtes (codis postals) de Castelló (codi de municipi 12040) on hi ha instituts
-```
-SELECT DISTINCT codpostal  
-  FROM INSTITUTS  
-  WHERE cod_m=12040
-```
+
+    SELECT DISTINCT codpostal  
+      FROM INSTITUTS  
+      WHERE cod_m=12040
+
   3) Traure les distintes comarques i llengües que es parlen en elles
-```
-SELECT DISTINCT nom_c , llengua  
-  FROM POBLACIONS  
-  ORDER BY 1
-```
+
+    SELECT DISTINCT nom_c , llengua  
+      FROM POBLACIONS  
+      ORDER BY 1
+
 
 ## :pencil2: Exercicis
 

@@ -13,16 +13,16 @@ Veurem a continuació la sintaxi general de la instrucció, i posteriorment
 cadascuna de les clàusules:
 
 **<u>Sintaxi</u>**
-```
-SELECT [DISTINCT] <columnes>  
-[ INTO <clàusula> ]  
-FROM <clàusula>  
-[ WHERE <clàusula> ]  
-[ GROUP BY <clàusula> ]  
-[ HAVING <clàusula> ]  
-[ ORDER BY <clàusula> ]  
-[ LIMIT num1 OFFSET num2 ]
-```
+
+    SELECT [DISTINCT] <columnes>  
+    [ INTO <clàusula> ]  
+    FROM <clàusula>  
+    [ WHERE <clàusula> ]  
+    [ GROUP BY <clàusula> ]  
+    [ HAVING <clàusula> ]  
+    [ ORDER BY <clàusula> ]  
+    [ LIMIT num1 OFFSET num2 ]
+
 Com veieu, les úniques clàusules obligatòries són la del **SELECT** (on es diu les columnes que volem que isquen com a resultat) i la del **FROM** (on es diu d'on venen les dades).
 
 !!! note "Nota"

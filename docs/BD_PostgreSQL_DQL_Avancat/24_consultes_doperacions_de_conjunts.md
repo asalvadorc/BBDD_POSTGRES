@@ -34,7 +34,7 @@ Si volem ordenar per algun camp, ho haurem de posar al final de l'última
 consulta, però referint-se en tot cas als camps de la primera consulta (ho
 podem evitar posant el número d'ordre en el ORDER BY)
 
-**Exemple**
+**<u>Exemples</u>**
 
   1) Volem veure en un únic resultat tant el nom de les comarques com el nom de les poblacions, sempre amb el nom de la província al costat
 

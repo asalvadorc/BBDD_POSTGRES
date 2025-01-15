@@ -20,11 +20,11 @@ següent:
 
 Tenir clar aquest ordre ens pot clarificar alguna cosa, i poder evitar alguns
 errors. L'error de la següent sentència ja s'havia explicat en l'apartat de la clàusula GROUP BY.
-```
-SELECT nom_c, COUNT(*), cod_m  
-  FROM POBLACIONS  
-  GROUP BY nom_c
-```
+
+    SELECT nom_c, COUNT(*), cod_m  
+      FROM POBLACIONS  
+      GROUP BY nom_c
+
 > ens donarà el següent error:
 
 ![](T6_1_19_1.png)
@@ -48,10 +48,10 @@ SELECT nom_c, COUNT(*), cod_m
 Un altre exemple il·lustratiu (que ja el vam posar molt paregut en l'apartat de la clàusula GROUP BY) pot ser el següent: podríem intentar traure l'altura màxima de tots els
 pobles, i la població que té aquesta altura. Podríem estar temptats de fer-lo
 d'aquesta manera:
-```
-SELECT MAX(altura), nom  
-  FROM POBLACIONS;
-```
+
+    SELECT MAX(altura), nom  
+      FROM POBLACIONS;
+
 > Ens donarà el mateix error que abans, ja que com tenim una funció d'agregat
 > intentarà fer grups, i com no tenim clàusula GROUP BY tota la taula serà un
 > grup. I podrà calcular el màxim sense problemes, però no podrà traure una

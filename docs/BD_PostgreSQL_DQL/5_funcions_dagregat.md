@@ -12,25 +12,25 @@ podrem canviar amb la clàusula **GROUP BY**.
 
 **<u>Sintaxi</u>**
 
-  * **COUNT (* | <expressió> ) **: compta el número de files; si es posa una columna o expressió, no es comptaran els valors nuls.
+  * **COUNT (* | <expressió> )**: compta el número de files; si es posa una columna o expressió, no es comptaran els valors nuls.
 
-  * **SUM ( <expressió> ) **: torna la suma de la columna o expressió especificada. Ignora els valors nuls.
+  * **SUM ( <expressió> )**: torna la suma de la columna o expressió especificada. Ignora els valors nuls.
 
-  * **AVG ( <expressió> ) **: calcula la mitjana aritmètica de la columna o expressió especificada. Ignora els valors nuls.
+  * **AVG ( <expressió> )**: calcula la mitjana aritmètica de la columna o expressió especificada. Ignora els valors nuls.
 
-  * **VAR_SAMP ( <expressió> ) **: calcula la variància d'una mostra a partir de la columna o expressió especificada.
+  * **VAR_SAMP ( <expressió> )**: calcula la variància d'una mostra a partir de la columna o expressió especificada.
 
-  * **STDDEV ( <expressió> ) **: desviació típica d'una mostra.
+  * **STDDEV ( <expressió> )**: desviació típica d'una mostra.
 
-  * **MAX ( <expressió> ) **: calcula el màxim.
+  * **MAX ( <expressió> )**: calcula el màxim.
 
-  * **MIN ( <expressió> ) **: calcula el mínim.
+  * **MIN ( <expressió> )**: calcula el mínim.
 
 Per exemple, si volem saber el nombre d'Instituts:
-```
-SELECT COUNT(*) AS "Nombre d'Instituts"  
-   FROM INSTITUTS;
-```
+
+    SELECT COUNT(*) AS "Nombre d'Instituts"  
+      FROM INSTITUTS;
+
 
 !!! note "Nota"
       És interessant la utilització d'àlias, per a que no apareguen capçaleres com _**count**_
@@ -39,32 +39,32 @@ SELECT COUNT(*) AS "Nombre d'Instituts"
 **<u>Exemples</u>**
 
   1) Comptar el nombre total de pobles.
-```
-SELECT Count(*)  
-  FROM POBLACIONS;
-```
+
+    SELECT Count(*)  
+      FROM POBLACIONS;
+
   2) Comptar el nombre de poblacions de la **Plana Alta**.
-```
-SELECT Count(*)  
-  FROM POBLACIONS  
-  WHERE nom_c = 'Plana Alta';
-```
+
+    SELECT Count(*)  
+      FROM POBLACIONS  
+      WHERE nom_c = 'Plana Alta';
+
   3) Calcular la mitjana d'habitants dels pobles de la **Plana Alta** i **Plana Baixa**.
-```
-SELECT AVG(poblacio)  
-  FROM POBLACIONS  
-  WHERE nom_c = 'Plana Alta' OR nom_c = 'Plana Baixa'
-```
+
+    SELECT AVG(poblacio)  
+      FROM POBLACIONS  
+      WHERE nom_c = 'Plana Alta' OR nom_c = 'Plana Baixa'
+
   4) Calcular la mitjana de densitat de les poblacions. La densitat es calcula com el número d'habitants dividit per l'extensió.
-```
-SELECT AVG(poblacio/extensio)  
-  FROM POBLACIONS;
-```
+
+    SELECT AVG(poblacio/extensio)  
+      FROM POBLACIONS;
+
   5) Calcular l'altura màxima i mínima de tots els pobles.
-```
-SELECT MAX(altura), MIN(altura)  
-  FROM POBLACIONS
-```
+
+    SELECT MAX(altura), MIN(altura)  
+      FROM POBLACIONS
+
 
 ## :pencil2: Exercicis
 

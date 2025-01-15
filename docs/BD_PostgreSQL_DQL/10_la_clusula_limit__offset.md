@@ -26,11 +26,11 @@ BY.
 
 
 **<u>Sintaxi</u>**
-```
-SELECT <columnes>  
-  FROM <taules>  
-  [LIMIT _n_] [OFFSET _m_]
-```
+
+    SELECT <columnes>  
+      FROM <taules>  
+      [LIMIT _n_] [OFFSET _m_]
+
 El número _**n**_ ha de ser un enter, i se seleccionaran únicament les _**n**_
 primeres files (les de dalt). En cas de posat OFFSET se saltaran  _**m**_
 files. En cas de no posar **LIMIT** , se saltaran _**m** _files i es trauran
@@ -38,67 +38,67 @@ totes les altres fins el final.
 
 Per exemple, si volem traure les 10 poblacions més altes, haurem d'agafar les
 10 primeres, ordenant per altura en forma descendent:
-```
-SELECT nom , altura  
-  FROM POBLACIONS  
-  ORDER BY altura DESC  
-  LIMIT 10
-```
+
+    SELECT nom , altura  
+      FROM POBLACIONS  
+      ORDER BY altura DESC  
+      LIMIT 10
+
 L'exemple anterior sembla correcte, però no funciona del tot bé perquè amb les
 dades que tenim, hi ha 3 poblacions que no tenen altura, i el valor nul el
 posa al final de tots els altres valors, en ordre ascendent, i per tant al
 principi en ordre descendent.
 
 Ho podem arreglar senzillament saltant les 3 primeres (que són les del nul)
-```
-SELECT nom , altura  
-  FROM POBLACIONS  
-  ORDER BY altura DESC  
-  LIMIT 10 OFFSET 3
-```
+
+    SELECT nom , altura  
+      FROM POBLACIONS  
+      ORDER BY altura DESC  
+      LIMIT 10 OFFSET 3
+
 Encara que sembla millor llevar les d'altura nula, així no estem obligats a
 saber quantes poblacions amb altura nula hi ha
-```
-SELECT nom , altura  
-  FROM POBLACIONS  
-  WHERE altura IS NOT NULL  
-  ORDER BY altura DESC  
-  LIMIT 10
-```
+
+    SELECT nom , altura  
+      FROM POBLACIONS  
+      WHERE altura IS NOT NULL  
+      ORDER BY altura DESC  
+      LIMIT 10
+
 Si vulguérem traure totes les poblacions i altures, excepte les que tenen nul,
 i sabem que aquestes en són 3, podem posar OFFSET sense LIMIT, per a saltar
 les 3 primeres, i traure-les totes fins el final
-```
-SELECT nom , altura  
-  FROM POBLACIONS  
-  ORDER BY altura DESC  
-  OFFSET 3
-```
+
+    SELECT nom , altura  
+      FROM POBLACIONS  
+      ORDER BY altura DESC  
+      OFFSET 3
+
 **<u>Exemples</u>**
 
   1) Traure les 5 poblacions més poblades
-```
-SELECT nom , poblacio  
-  FROM POBLACIONS  
-  ORDER BY poblacio DESC  
-  LIMIT 5
-```
+
+    SELECT nom , poblacio  
+      FROM POBLACIONS  
+      ORDER BY poblacio DESC  
+      LIMIT 5
+
   2) Traure les 4 comarques amb més pobles.
-```
-SELECT nom_c , COUNT(*)  
-  FROM POBLACIONS  
-  GROUP BY nom_c  
-  ORDER BY 2 DESC  
-  LIMIT 4
-```
+
+    SELECT nom_c , COUNT(*)  
+      FROM POBLACIONS  
+      GROUP BY nom_c  
+      ORDER BY 2 DESC  
+      LIMIT 4
+
   3) Traure les 10 poblacions amb més instituts, saltant-nos les 3 primeres.
-```
-SELECT cod_m , COUNT(*)  
-  FROM INSTITUTS  
-  GROUP BY cod_m  
-  ORDER BY 2 DESC  
-  LIMIT 10 OFFSET 3
-```
+
+    SELECT cod_m , COUNT(*)  
+      FROM INSTITUTS  
+      GROUP BY cod_m  
+      ORDER BY 2 DESC  
+      LIMIT 10 OFFSET 3
+
 
 ## :pencil2: Exercicis
 
